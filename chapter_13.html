@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureBank - Chapter 13: CSS Cascading & Priority</title>
+    <!-- Use the financial stylesheet -->
+    <link rel="stylesheet" href="banking_style.css" />
+    <link rel="icon" href="icon/favicon.png" type="png" />
+    <style>
+      /* --- Internal CSS for Chapter 13 Demonstration --- */
+
+      /* 13.1 Rule 1: Last Declaration Wins */
+      .status-msg {
+        color: #004d99; /* Blue (Standard) */
+      }
+      /* This rule comes LATER, so it wins */
+      .status-msg {
+        color: #cc0000; /* Red (Alert) */
+      }
+
+      /* 13.2 Rule 2: Specificity */
+      /* Specificity: 0,0,1 (Element) */
+      p {
+        color: #555;
+      }
+      /* Specificity: 0,1,0 (Class) - Wins over Element */
+      .account-info {
+        color: #004d99;
+      }
+      /* Specificity: 1,0,0 (ID) - Wins over Class */
+      #premium-client {
+        color: #00a04d; /* Green for Premium */
+        font-weight: bold;
+      }
+      /* 13.4 Rule 4: !important */
+      .compliance-alert {
+        color: #555; /* Standard grey text */
+      }
+      .compliance-alert {
+        color: #cc0000 !important; /* Mandatory Red Override */
+      }
+
+      /* 13.5 Inheritance */
+      .parent-container {
+        color: #004d99; /* Parent sets text color to Blue */
+        font-family: "Courier New", Courier, monospace; /* Parent sets font */
+        border: 1px solid #ccc;
+        padding: 15px;
+      }
+
+      .child-element {
+        /* No color defined here, so it INHERITS Blue from parent */
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chapterName">
+      <h1><b> CHAPTER 13</b></h1>
+      <h2><b>CSS Cascading: Rules of Priority</b></h2>
+    </div>
+
+    <div class="contentAndTopic">
+      <div class="contents">
+        <h2>Table of Contents</h2>
+        <ol>
+          <li><a href="#rule1">Rule 1: Last Declaration Wins</a></li>
+          <li><a href="#rule2">Rule 2: Specificity</a></li>
+          <li><a href="#rule3">Rule 3: Inline Style Priority</a></li>
+          <li><a href="#rule4">Rule 4: The "!important" Override</a></li>
+          <li><a href="#inheritance">Inheritance</a></li>
+        </ol>
+      </div>
+
+      <div class="topic">
+        <!-- 13.1 Rule 1 -->
+        <div id="rule1">
+          <h1>13.1 Rule 1: The Last Declaration Will Win</h1>
+          <hr />
+          <p>
+            If two selectors are identical, the browser uses the one defined
+            <strong>last</strong> in the CSS file. This represents the most
+            recent instruction.
+          </p>
+          <div style="border: 1px solid #ccc; padding: 10px">
+            <p class="status-msg">
+              System Status: Offline (This text is RED because the red rule was
+              declared last).
+            </p>
+          </div>
+        </div>
+        <hr />
+
+        <!-- 13.2 Rule 2 -->
+        <div id="rule2">
+          <h1>13.2 Rule 2: The More Specific Declaration Will Win</h1>
+          <hr />
+          <p>
+            Browsers calculate a "specificity score" for every rule. A rule with
+            a higher score overrides a lower one, regardless of order.
+            <br />
+            <strong>Hierarchy:</strong> ID (#id) > Class (.class) > Element
+            (tag).
+          </p>
+
+          <div style="border: 1px solid #ccc; padding: 10px">
+            <p class="account-info">
+              Standard Client (Styled by Class .account-info) - Blue
+            </p>
+            <p class="account-info" id="premium-client">
+              Premium Client (Styled by ID #premium-client) - Green [ID beats
+              Class]
+            </p>
+          </div>
+        </div>
+        <hr />
+
+        <!-- 13.3 Rule 3 -->
+        <div id="rule3">
+          <h1>13.3 Rule 3: Inline Style is Preferred</h1>
+          <hr />
+          <p>
+            Styles applied directly to an HTML element via the `style="..."`
+            attribute override both Internal (in &lt;head&gt;) and External (in
+            .css file) styles.
+          </p>
+
+          <div style="border: 1px solid #ccc; padding: 10px">
+            <!-- The internal CSS sets .account-info to Blue, but inline style sets it to Orange -->
+            <p class="account-info" style="color: orange">
+              High Priority Notice (Orange) - Inline style overrides the Blue
+              class style.
+            </p>
+          </div>
+        </div>
+        <hr />
+
+        <!-- 13.4 Rule 4 -->
+        <div id="rule4">
+          <h1>13.4 Rule 4: “!important” is the Strongest Rule</h1>
+          <hr />
+          <p>
+            The `!important` declaration overrides <strong>all</strong> other
+            rules, including inline styles. It acts as a mandatory compliance
+            enforcement.
+          </p>
+
+          <div style="border: 1px solid #ccc; padding: 10px">
+            <!-- Even with inline style set to black, !important in CSS makes it Red -->
+            <p class="compliance-alert" style="color: black">
+              MANDATORY AUDIT REQUIRED. (Red) - The `!important` rule forces
+              this to be red, ignoring the inline black style.
+            </p>
+          </div>
+        </div>
+        <hr />
+
+        <!-- 13.5 Inheritance -->
+        <div id="inheritance">
+          <h1>13.5 Inheritance</h1>
+          <hr />
+          <p>
+            Some CSS properties (like `font-family` and `color`) are passed down
+            from parent elements to their children. This ensures consistency
+            across a data card without restating rules.
+          </p>
+
+          <div class="parent-container">
+            This is the <strong>Parent Container</strong> (Blue text, Courier
+            Font).
+            <div class="child-element">
+              <br />
+              This is the <strong>Child Element</strong>.<br />
+              It automatically inherits the Blue Color and Courier Font from the
+              parent.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- START: Bottom Navigation Bar (Fixed for Chapter 13) -->
+    <div class="bottom-navigation-bar">
+      <a href="Homepage.html">Home</a>
+      <a href="chapter_01.html">01</a>
+      <a href="chapter_02.html">02</a>
+      <a href="chapter_03.html">03</a>
+      <a href="chapter_04.html">04</a>
+      <a href="chapter_05.html">05</a>
+      <a href="chapter_06.html">06</a>
+      <a href="chapter_07.html">07</a>
+      <a href="chapter_08.html">08</a>
+      <a href="chapter_11.html">11</a>
+      <a href="chapter_12.html">12</a>
+      <a href="chapter_13.html" class="current-chapter">13</a>
+      <a href="chapter_14.html">14</a>
+      <a href="chapter_15.html">15</a>
+      <a href="chapter_16.html">16</a>
+      <a href="chapter_17.html">17</a>
+      <a href="chapter_18.html">18</a>
+      <a href="chapter_19.html">19</a>
+      <a href="chapter_20.html">20</a>
+      <a href="chapter_21.html">21</a>
+      <a href="chapter_22.html">22</a>
+    </div>
+    <footer>
+      <p style="color: #ffffff">
+        Copyright &copy; SecureBank Systems Training Division
+      </p>
+      <address>
+        <p style="color: #ffffff">1207 Udayon Tower, Financial District</p>
+        <p>
+          <a href="tel:01767697795">Support Line</a> |
+          <a href="mailto:inzamamkhan71@gmail.com">Security Operations</a>
+        </p>
+      </address>
+    </footer>
+  </body>
+</html>

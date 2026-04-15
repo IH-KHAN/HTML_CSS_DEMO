@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureBank - Chapter 02: Core HTML Elements for Finance</title>
+    <link rel="stylesheet" href="banking_style.css" />
+    <link rel="icon" href="icon/favicon.png" type="png" />
+    <style>
+      /* --- Internal Styles for Thematic Elements --- */
+      /* General Table Styling for consistency */
+      .banking-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        margin-top: 15px;
+      }
+      .banking-table th,
+      .banking-table td {
+        border: 1px solid #e0e0e0;
+        padding: 12px;
+        font-size: 0.95em;
+      }
+      .banking-table th {
+        background-color: #004d99; /* Deep Blue Header */
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      .banking-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      .banking-table caption {
+        font-weight: bold;
+        font-size: 1.2em;
+        text-align: left;
+        margin-bottom: 5px;
+        color: #004d99;
+      }
+
+      /* Image Map Styling for visual example */
+      .dashboard-map-container {
+        text-align: center;
+        margin: 20px 0;
+        border: 1px dashed #ccc;
+        padding: 15px;
+      }
+
+      /* Progress/Meter Styling */
+      .progress-meter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin: 15px 0;
+      }
+      .progress-meter-group label {
+        font-weight: bold;
+        color: #004d99;
+      }
+      progress[value] {
+        width: 100%;
+        height: 25px;
+      }
+      meter {
+        width: 100%;
+        height: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chapterName">
+      <h1><b> CHAPTER 02</b></h1>
+      <h2><b>Core HTML Elements for Finance and Banking</b></h2>
+    </div>
+
+    <div class="contentAndTopic">
+      <nav class="contents">
+        <h2>Table of Contents</h2>
+        <ol>
+          <li><a href="#headings">Headings & Paragraphs</a></li>
+          <li>
+            <a href="#hyperlinks">Hyperlinks</a>
+            <ol>
+              <li><a href="#externalAnchor">External Anchors</a></li>
+              <li><a href="#internalAnchor">Internal Anchors</a></li>
+              <li><a href="#downloadLink">Download Links</a></li>
+            </ol>
+          </li>
+          <li>
+            <a href="#images">Images & Charts</a>
+            <ol>
+              <li><a href="#imageMaps">Image Maps</a></li>
+              <li><a href="#responsivePictures">Responsive Pictures</a></li>
+            </ol>
+          </li>
+          <li>
+            <a href="#lists">Lists (Data Organization)</a>
+            <ol>
+              <li>
+                <a href="#unorderedList">Unordered List (Risk Factors)</a>
+              </li>
+              <li>
+                <a href="#orderedList">Ordered List (Verification Steps)</a>
+              </li>
+              <li>
+                <a href="#descriptionLists">Description Lists (Glossary)</a>
+              </li>
+            </ol>
+          </li>
+          <li><a href="#tables">Advanced Tables</a></li>
+          <li>
+            <a href="#breaks"
+              >Breaks (&ltbr /&gt)
+              <hr />
+            </a>
+          </li>
+          <li><a href="#progressBars">Progress & Meter Bars</a></li>
+          <li>
+            <a href="#computerCode">Computer Code & Pre-formatted Text</a>
+          </li>
+        </ol>
+      </nav>
+      <div class="topic">
+        <div id="headings">
+          <h1>2.1 Headings & 2.2 Paragraphs (Structuring Reports)</h1>
+          <hr />
+          <h2>H2: Quarterly Performance Summary - Q4 2025</h2>
+          <p>
+            The quarter concluded with a **2.3% growth in managed assets**,
+            surpassing analyst expectations. This growth was driven primarily by
+            strong performance in the technology sector and strategic
+            low-volatility bond purchases.
+          </p>
+          <h3>H3: Risk Assessment Sub-Section</h3>
+          <p>
+            Current geopolitical tensions pose a moderate **(Level 3)** risk to
+            emerging market funds. Mitigation strategies are in place, reducing
+            exposure by 15% through hedging instruments.
+          </p>
+        </div>
+        <hr />
+
+        <div id="hyperlinks">
+          <h1>2.3 Hyperlinks (Data Navigation)</h1>
+          <hr />
+
+          <div id="externalAnchor">
+            <h2>2.3.1 External Anchors (Regulatory Compliance)</h2>
+            <p>
+              For complete transparency, consult the latest guidelines from the
+              <a
+                href="https://sec.gov.bd/"
+                target="_blank"
+                title="Opens the Securities and Exchange Commission website"
+                >Bangladesh Securities and Exchange Commission (BSEC)</a
+              >.
+            </p>
+          </div>
+
+          <div id="internalAnchor">
+            <h2>2.3.2 Internal Anchors (In-Page Jumps)</h2>
+            <p>
+              Jump directly to the section detailing
+              <a href="#progressBars">Progress Bar Visualizations</a> on this
+              page.
+            </p>
+          </div>
+
+          <div id="downloadLink">
+            <h2>2.3.3 Download Links (Audit Reports)</h2>
+            <p>
+              Download the
+              <a
+                href="files/Audit_Report_2025.pdf"
+                download="Q4_2025_Audit_Report.pdf"
+                >Financial Report (PDF)</a
+              >
+              for offline review.
+            </p>
+          </div>
+        </div>
+        <hr />
+
+        <div id="images">
+          <h1>2.4 Images & Charts (Visualizing Data)</h1>
+          <hr />
+
+          <div id="imageMaps">
+            <h2>2.4.1 Image Maps (Interactive Dashboard Segments)</h2>
+            <p>
+              Click on a financial segment (Assets or Liabilities) in the image
+              below to navigate to the detailed report.
+            </p>
+            <div class="dashboard-map-container">
+              <!-- Placeholder image for a Dashboard Overview Chart -->
+              <img
+                src="/images/Assets-and-Liabilities_.png"
+                alt="Financial Dashboard Overview Chart"
+                usemap="#dashboardmap"
+                style="width: 100%; max-width: 600px; height: auto"
+              />
+              <!-- MAP definition -->
+              <map name="dashboardmap">
+                <!-- Example: Map a rectangle over where the "Assets" segment would be -->
+                <area
+                  shape="rect"
+                  coords="0,0,300,600"
+                  href="https://www.investopedia.com/ask/answers/032415/what-difference-between-current-assets-and-fixed-assets.asp"
+                  alt="Assets Report"
+                  title="Assets Report (Clickable Area)"
+                />
+                <!-- Example: Map a rectangle over where the "Liabilities" segment would be -->
+                <area
+                  shape="rect"
+                  coords="301,0,600,600"
+                  href="https://www.investopedia.com/articles/investing/100313/reviewing-liabilities-balance-sheet.asp"
+                  alt="Liabilities Report"
+                  title="Liabilities Report (Clickable Area)"
+                />
+              </map>
+            </div>
+          </div>
+          <hr />
+
+          <div id="lists">
+            <h1>2.5 Lists (Data Organization)</h1>
+            <hr />
+
+            <div id="unorderedList">
+              <h2>2.5.1 Unordered List (Key Risk Factors)</h2>
+              <p>Identified risks for the next fiscal year:</p>
+              <ul>
+                <li>Cybersecurity Threat Level (High)</li>
+                <li>Interest Rate Volatility</li>
+                <li>Regulatory Changes in APAC Region</li>
+                <li>Unexpected Geopolitical Events</li>
+              </ul>
+            </div>
+
+            <div id="orderedList">
+              <h2>2.5.2 Ordered List (KYC Verification Steps)</h2>
+              <p>Mandatory steps to verify a new client:</p>
+              <ol>
+                <li>Identity Document Submission (Passport/ID Card)</li>
+                <li>
+                  Address Proof Verification (Utility Bill/Bank Statement)
+                </li>
+                <li>Background Check & Sanctions Screening</li>
+                <li>Final Compliance Officer Approval</li>
+              </ol>
+            </div>
+
+            <div id="descriptionLists">
+              <h2>2.5.3 Description Lists (Financial Glossary)</h2>
+              <dl>
+                <dt>Liquidity</dt>
+                <dd>
+                  The ease with which an asset can be converted into cash
+                  without affecting its market price.
+                </dd>
+                <dt>Leverage</dt>
+                <dd>The use of borrowed capital to finance an investment.</dd>
+                <dt>Fiduciary</dt>
+                <dd>
+                  A person or organization that acts on behalf of another person
+                  or persons to manage assets.
+                </dd>
+              </dl>
+            </div>
+          </div>
+          <hr />
+
+          <div id="tables">
+            <h1>2.6 Advanced Tables (Complex Data Grids)</h1>
+            <hr />
+            <h2>Consolidated Regional Investment Performance</h2>
+            <p>
+              This table demonstrates complex HTML table structure, including
+              row and column grouping for clear segmentation of financial data.
+            </p>
+            <table class="banking-table">
+              <caption>
+                Summary of Asset Performance by Region and Category (Millions
+                USD)
+              </caption>
+              <colgroup>
+                <col style="background-color: #e6f2ff" />
+                <col span="2" />
+                <col span="2" style="background-color: #fff9e6" />
+              </colgroup>
+
+              <thead>
+                <tr>
+                  <th rowspan="2">Region</th>
+                  <th colspan="2">Equities (Stocks)</th>
+                  <th colspan="2">Fixed Income (Bonds)</th>
+                </tr>
+                <tr>
+                  <th>Current Value</th>
+                  <th>YTD Change (%)</th>
+                  <th>Current Value</th>
+                  <th>YTD Change (%)</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>**North America**</td>
+                  <td>$520.5</td>
+                  <td>+12.8%</td>
+                  <td>$300.2</td>
+                  <td>+0.9%</td>
+                </tr>
+                <tr>
+                  <td>**Europe (EMEA)**</td>
+                  <td>$310.9</td>
+                  <td>+8.5%</td>
+                  <td>$180.7</td>
+                  <td>+1.1%</td>
+                </tr>
+                <tr>
+                  <td colspan="3" style="text-align: right; font-weight: bold">
+                    TOTAL ASSET VALUE (Equities & Fixed Income)
+                  </td>
+                  <td colspan="2" style="font-weight: bold">$1312.3 Million</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <hr />
+
+          <div id="breaks">
+            <h1>2.7 Breaks (Formatting for Clarity)</h1>
+            <hr />
+
+            <div id="lineBreaking">
+              <h2>2.7.1 Line Breaking (`&lt;br&gt;`)</h2>
+              <p>
+                Official Registered Address:<br />
+                SecureBank Global Headquarters<br />
+                100 Compliance Tower, Floor 42<br />
+                Financial District, London, UK
+              </p>
+            </div>
+
+            <div id="thematicBreaking">
+              <h2>2.7.2 Thematic Breaking (`&lt;hr&gt;`)</h2>
+              <p>
+                The horizontal rule below clearly separates the primary
+                financial data section from the technical system checks.
+              </p>
+              <hr />
+              <p style="font-style: italic">
+                --- Technical System Integrity Check Follows ---
+              </p>
+            </div>
+          </div>
+          <hr />
+
+          <div id="progressBars">
+            <h1>2.8 Progress Bars (Visualizing Status)</h1>
+            <hr />
+
+            <div class="progress-meter-group">
+              <div id="progress">
+                <h2>2.8.1 Transaction Verification (`&lt;progress&gt;`)</h2>
+                <label for="txn-progress"
+                  >AML Screening Process Completion:</label
+                >
+                <progress id="txn-progress" value="75" max="100">75%</progress>
+                <p style="font-size: 0.9em; margin-top: 5px">
+                  75% of mandatory regulatory checks passed.
+                </p>
+              </div>
+
+              <div id="meter">
+                <h2>2.8.2 Liquidity Ratio Meter (`&lt;meter&gt;`)</h2>
+                <label for="liquidity-ratio"
+                  >Current Bank Liquidity Ratio (Target: 0.18):</label
+                >
+                <meter
+                  id="liquidity-ratio"
+                  value="0.22"
+                  min="0"
+                  max="0.3"
+                  low="0.1"
+                  high="0.25"
+                  optimum="0.18"
+                >
+                  22%
+                </meter>
+                <p style="font-size: 0.9em; margin-top: 5px">
+                  Current ratio is 0.22 (well within the safe zone).
+                </p>
+              </div>
+            </div>
+          </div>
+          <hr />
+
+          <div id="computerCode">
+            <h1>2.9 Computer Code (`&lt;code&gt;`, `&lt;pre&gt;`)</h1>
+            <hr />
+
+            <div id="code">
+              <h2>2.9.1 Inline Code (`&lt;code&gt;`)</h2>
+              <p>
+                The system requires the **API Key**
+                <code style="color: #c00">A1B2C3D4E5F6</code> to authenticate
+                the data feed connection. The **transaction ID**
+                <code style="color: green">TXN_ID_US6873</code> is automatically
+                generated.
+              </p>
+            </div>
+
+            <div id="pre">
+              <h2>
+                2.9.2 Pre-formatted Text (`&lt;pre&gt;`) - Security Disclaimer
+              </h2>
+              <p>
+                This block preserves the exact spacing and line breaks of the
+                system's compliance audit output:
+              </p>
+              <pre
+                style="
+                  border: 1px dashed #c00;
+                  padding: 15px;
+                  background-color: #fff8f8;
+                  font-family: monospace;
+                  white-space: pre-wrap;
+                "
+              >
++------------------------------------------------------+
+| SECURITY WARNING: Authorized Access Only             |
+|                                                      |
+| All system interactions are logged and audited.      |
+| Unauthorized use is strictly prohibited.             |
+|                                                      |
+| Session Timeout: 15:00 Mins                          |
++------------------------------------------------------+
+            </pre
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-navigation-bar">
+      <a href="Homepage.html">Home</a>
+      <a href="chapter_01.html">01</a>
+      <a href="chapter_02.html" class="current-chapter">02</a>
+      <a href="chapter_03.html">03</a>
+      <a href="chapter_04.html">04</a>
+      <a href="chapter_05.html">05</a>
+      <a href="chapter_06.html">06</a>
+      <a href="chapter_07.html">07</a>
+      <a href="chapter_08.html">08</a>
+      <a href="chapter_11.html">11</a>
+      <a href="chapter_12.html">12</a>
+      <a href="chapter_13.html">13</a>
+      <a href="chapter_14.html">14</a>
+      <a href="chapter_15.html">15</a>
+      <a href="chapter_16.html">16</a>
+      <a href="chapter_17.html">17</a>
+      <a href="chapter_18.html">18</a>
+      <a href="chapter_19.html">19</a>
+      <a href="chapter_20.html">20</a>
+      <a href="chapter_21.html">21</a>
+      <a href="chapter_22.html">22</a>
+    </div>
+    <footer>
+      <p>Copyright &copy; SecureBank Systems Training Division</p>
+      <address>
+        <p>1207 Udayon Tower, Financial District</p>
+        <p>
+          <a href="tel:01767697795">Support Line</a> |
+          <a href="mailto:inzamamkhan71@gmail.com">Security Operations</a>
+        </p>
+      </address>
+    </footer>
+  </body>
+</html>

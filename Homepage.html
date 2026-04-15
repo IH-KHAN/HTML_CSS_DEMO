@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureBank - Modern Banking Portal</title>
+    <link rel="icon" type="image/x-icon" href="icon/icon2.png" />
+    <!-- Google Fonts for modern typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-blue: #004d99;
+        --accent-green: #00a04d;
+        --glass-bg: rgba(255, 255, 255, 0.75);
+        --glass-border: rgba(255, 255, 255, 0.4);
+        --text-dark: #1a1a1a;
+        --text-light: #ffffff;
+        --blur-amount: 12px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #f0f4f8;
+        color: var(--text-dark);
+        overflow-x: hidden;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      /* --- Animated Background Shapes --- */
+      .bg-shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        z-index: -1;
+        animation: float 10s infinite alternate;
+      }
+
+      .shape-1 {
+        top: -10%;
+        left: -10%;
+        width: 500px;
+        height: 500px;
+        background: rgba(0, 77, 153, 0.2);
+      }
+
+      .shape-2 {
+        bottom: -10%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: rgba(0, 160, 77, 0.15);
+        animation-delay: -5s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(30px, 50px);
+        }
+      }
+
+      /* --- Moving Banner (News Ticker) --- */
+      .ticker-wrap {
+        position: fixed;
+        top: 80px; /* Just below nav */
+        width: 100%;
+        background: #004d99;
+        color: white;
+        font-size: 14px;
+        padding: 8px 0;
+        overflow: hidden;
+        white-space: nowrap;
+        z-index: 900;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .ticker {
+        display: inline-block;
+        padding-left: 100%;
+        animation: marquee 40s linear infinite;
+      }
+
+      .ticker span {
+        margin-right: 40px;
+      }
+
+      .ticker .highlight {
+        color: #4ade80; /* Green for positive numbers */
+        font-weight: bold;
+      }
+
+      .ticker .warning {
+        color: #ffab00; /* Orange for alerts */
+        font-weight: bold;
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(-100%, 0);
+        }
+      }
+
+      nav {
+        width: 100%;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(var(--blur-amount));
+        -webkit-backdrop-filter: blur(var(--blur-amount));
+        border-bottom: 1px solid var(--glass-border);
+        padding: 0 50px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      nav .logo {
+        font-size: 24px;
+        font-weight: 800;
+        color: var(--primary-blue);
+        letter-spacing: -0.5px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      nav .logo span {
+        color: var(--accent-green);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+      }
+
+      nav ul li {
+        position: relative;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #555;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: all 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: var(--primary-blue);
+        background: rgba(0, 77, 153, 0.05);
+      }
+
+      /* Modern Dropdown */
+      nav ul li .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: 10px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        border: 1px solid white;
+        border-radius: 12px;
+        padding: 15px 0;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        min-width: 260px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 1000;
+      }
+
+      nav ul li:hover .dropdown,
+      nav ul li:focus-within .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      nav ul li .dropdown a {
+        display: block;
+        padding: 10px 25px;
+        color: #444;
+        font-size: 14px;
+        border-radius: 0;
+      }
+
+      nav ul li .dropdown a:hover {
+        background: rgba(0, 77, 153, 0.05);
+        color: var(--primary-blue);
+        padding-left: 30px; /* Slide effect */
+      }
+
+      /* --- Hero Section --- */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 120px; /* Account for fixed nav + ticker */
+        padding-bottom: 50px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .hero-content {
+        text-align: center;
+        max-width: 800px;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 64px;
+        font-weight: 800;
+        color: var(--primary-blue);
+        margin-bottom: 20px;
+        line-height: 1.1;
+        background: linear-gradient(135deg, #004d99 0%, #00a04d 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+        font-size: 20px;
+        color: #666;
+        margin-bottom: 40px;
+        line-height: 1.6;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-bottom: 50px;
+      }
+
+      .btn-primary {
+        background: var(--primary-blue);
+        color: white;
+        border: none;
+        padding: 16px 32px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 10px 20px rgba(0, 77, 153, 0.2);
+      }
+
+      .btn-secondary {
+        background: white;
+        color: var(--primary-blue);
+        border: 2px solid var(--primary-blue);
+        padding: 16px 32px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(0, 77, 153, 0.3);
+      }
+
+      .btn-secondary:hover {
+        background: #f0f8ff;
+      }
+
+      /* --- Bank Card (Student Info) --- */
+      .bank-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.4) 0%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+        padding: 30px;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .bank-card:hover {
+        transform: translateY(-5px) scale(1.02);
+      }
+
+      .bank-card::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 150px;
+        height: 150px;
+        background: linear-gradient(135deg, #00a04d, transparent);
+        border-radius: 50%;
+        opacity: 0.1;
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .chip {
+        width: 50px;
+        height: 35px;
+        background: linear-gradient(135deg, #d4af37, #f9e392);
+        border-radius: 6px;
+        position: relative;
+      }
+
+      .contactless-icon {
+        font-size: 24px;
+        color: #333;
+        transform: rotate(90deg);
+      }
+
+      .card-details strong {
+        display: block;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #666;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+      }
+
+      .card-details span {
+        font-size: 20px;
+        font-family: monospace;
+        color: #004d99;
+        font-weight: 600;
+      }
+
+      .card-footer {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* Footer */
+      footer {
+        padding: 30px;
+        text-align: center;
+        background: white;
+        border-top: 1px solid #eaeaea;
+        color: #666;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background Shapes -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <!-- Navigation -->
+    <nav>
+      <div class="logo">Secure<span>Bank</span></div>
+      <ul>
+        <li><a href="#">Home</a></li>
+
+        <li tabindex="0">
+          <a href="#">Services ▾</a>
+          <div class="dropdown">
+            <a href="#">Account Opening</a>
+            <a href="#">Loans & Mortgages</a>
+            <a href="#">Credit Cards</a>
+            <a href="#">Business Banking</a>
+          </div>
+        </li>
+
+        <li tabindex="0">
+          <a href="#">Learning Hub ▾</a>
+          <div class="dropdown" style="overflow: scroll; height: 400px">
+            <a href="chapter_01.html">01. Getting to Know HTML</a>
+            <a href="chapter_02.html">02. HTML Elements</a>
+            <a href="chapter_03.html">03. HTML Styles</a>
+            <a href="chapter_04.html">04. Semantic HTML</a>
+            <a href="chapter_05.html">05. Web Forms</a>
+            <a href="chapter_06.html">06. HTML Multimedia</a>
+            <a href="chapter_07.html">07. HTML Graphics</a>
+            <a href="chapter_08.html">08. HTML Advanced</a>
+            <a href="chapter_09.html">09. HTML Events</a>
+            <a href="chapter_10.html">10. HTML APIs</a>
+            <a href="chapter_11.html">11. Getting to Know CSS</a>
+            <a href="chapter_12.html">12. CSS Selectors</a>
+            <a href="chapter_13.html">13. CSS Cascading</a>
+            <a href="chapter_14.html">14. CSS Box Model</a>
+            <a href="chapter_15.html">15. CSS Colors</a>
+            <a href="chapter_16.html">16. CSS Text</a>
+            <a href="chapter_17.html">17. CSS Backgrounds</a>
+            <a href="chapter_18.html">18. CSS Display</a>
+            <a href="chapter_19.html">19. CSS Layout</a>
+            <a href="chapter_20.html">20. CSS Transitions & Animation</a>
+            <a href="chapter_21.html">21. Advanced CSS</a>
+            <a href="chapter_22.html">22. Responsive CSS</a>
+          </div>
+        </li>
+
+        <li><a href="#">Contact</a></li>
+        <li>
+          <a href="#" style="color: var(--primary-blue); font-weight: 600"
+            >Login</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Moving Banner (Ticker) -->
+    <div class="ticker-wrap">
+      <div class="ticker">
+        <span
+          >📊 <strong>BDT/USD:</strong>
+          <span class="highlight">122.38 (+0.12%)</span></span
+        >
+        <span
+          >📉 <strong>BDT/EURO:</strong>
+          <span class="highlight">141.68 (+0.05%)</span></span
+        >
+        <span
+          ><span class="warning">⚠ SECURITY ALERT:</span> Never share your OTP
+          with anyone.</span
+        >
+        <span
+          >🚀 <strong>New Feature:</strong> Instant Global Transfers now
+          available in the app.</span
+        >
+        <span
+          >💼 <strong>Interest Rates:</strong> Savings accounts now up to
+          <span class="highlight">4.5% APY</span>.</span
+        >
+        <!-- Repeat content for smooth loop -->
+        <span
+          >📊 <strong>USD/EUR:</strong>
+          <span class="highlight">0.92 (+0.12%)</span></span
+        >
+        <span
+          >📉 <strong>USD/GBP:</strong>
+          <span class="highlight">0.78 (+0.05%)</span></span
+        >
+        <span
+          ><span class="warning">⚠ SECURITY ALERT:</span> Never share your OTP
+          with anyone.</span
+        >
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Next-Gen Banking<br />For The Digital Age</h1>
+        <p>
+          Experience seamless financial management with our secure, responsive,
+          and modern banking portal. Learn the code that powers modern fintech.
+        </p>
+
+        <div class="btn-group">
+          <button class="btn-primary">Open Account</button>
+          <button class="btn-secondary">View Demo</button>
+        </div>
+
+        <!-- Student Info (Styled as a Credit Card) -->
+        <div class="bank-card">
+          <div class="card-header">
+            <div class="chip"></div>
+            <div class="contactless-icon"></div>
+          </div>
+
+          <div class="card-details">
+            <strong>Authorized Developer</strong>
+            <span>Inzamam Haider Khan</span>
+            <br />
+            <span>ID:1291763</span>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-details">
+              <strong>Batch ID</strong>
+              <span>CS/PNTL-A/67/01</span>
+            </div>
+            <div
+              class="logo"
+              style="font-weight: 800; color: #004d99; font-size: 18px"
+            >
+              Secure<span style="color: #00a04d">Bank</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 SecureBank Portal. Designed by Inzamam. All rights reserved.
+    </footer>
+  </body>
+</html>

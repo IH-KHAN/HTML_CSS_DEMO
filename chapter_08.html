@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureBank - Chapter 08: Advanced HTML Structures</title>
+    <!-- Use the financial stylesheet -->
+    <link rel="stylesheet" href="banking_style.css" />
+    <link rel="icon" href="icon/favicon.png" type="png" />
+
+    <style>
+      /* --- Internal Styles for Chapter 8 Demonstration --- */
+
+      /* 8.2 Block Elements Styling */
+      .financial-report-block {
+        display: block; /* Default behavior, but explicit for demo */
+        background-color: #ffffff;
+        border-left: 5px solid #004d99; /* Bank Blue Accent */
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      /* 8.3 Inline Elements Styling */
+      .secure-badge {
+        display: inline; /* Default behavior */
+        background-color: #e6f4ea;
+        color: #137333;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.85em;
+        font-weight: bold;
+        border: 1px solid #137333;
+      }
+
+      /* 8.4 Inline-Block Elements Styling (Dashboard Cards) */
+      .dashboard-card-container {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+      }
+
+      .account-card {
+        display: inline-block; /* Allows elements to sit side-by-side with dimensions */
+        width: 200px;
+        height: 120px;
+        margin: 10px;
+        padding: 15px;
+        background: linear-gradient(135deg, #004d99 0%, #003366 100%);
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        vertical-align: top;
+      }
+
+      .account-card h3 {
+        font-size: 1em;
+        margin-top: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 5px;
+      }
+
+      .account-card .balance {
+        font-size: 1.4em;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      /* Data URI Image Styling */
+      .security-icon {
+        vertical-align: middle;
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chapterName">
+      <h1><b> CHAPTER 08</b></h1>
+      <h2><b>HTML Advanced: Structural Efficiency & Security</b></h2>
+    </div>
+
+    <div class="contentAndTopic">
+      <nav class="contents">
+        <h2>Table of Contents</h2>
+        <ol>
+          <li><a href="#dataURIs">8.1 Data URIs (Embedded Assets)</a></li>
+          <li>
+            <a href="#blockElements">8.2 Block Elements (Report Structure)</a>
+          </li>
+          <li>
+            <a href="#inlineElements">8.3 Inline Elements (Text Formatting)</a>
+          </li>
+          <li>
+            <a href="#inlineBlockElements"
+              >8.4 Inline-Block Elements (Dashboard Cards)</a
+            >
+          </li>
+        </ol>
+      </nav>
+
+      <div class="topic">
+        <!-- 8.1 DATA URIS -->
+        <div id="dataURIs">
+          <h1>8.1 Data URIs (Embedded Security Assets)</h1>
+          <hr />
+          <p>
+            Data URIs allow small images (like security icons) to be embedded
+            directly into the HTML code as Base64 strings. This reduces HTTP
+            requests, speeding up the load time for critical banking interfaces.
+          </p>
+          <div class="financial-report-block">
+            <h3>Secure Login Status</h3>
+            <p>
+              <img
+                class="security-icon"
+                src="/icon/locked.png"
+                alt="Lock Icon"
+                style="
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  display: inline-block;
+                "
+              />
+              Connection Encrypted (TLS 1.3). Assets loaded via Data URI.
+            </p>
+          </div>
+        </div>
+        <br />
+
+        <!-- 8.2 BLOCK ELEMENTS -->
+        <div id="blockElements">
+          <h1>8.2 Block Elements (Structuring Reports)</h1>
+          <hr />
+          <p>
+            Block-level elements (like `&lt;div&gt;`, `&lt;p&gt;`,
+            `&lt;section&gt;`) always start on a new line and take up the full
+            width available. They form the "bones" of financial reports.
+          </p>
+
+          <!-- Example 1 -->
+          <div class="financial-report-block">
+            <h2>Annual Audit Summary 2025</h2>
+            <p>
+              This entire container is a **block-level element**. It pushes
+              subsequent content to the next line, creating a distinct section
+              for the audit report.
+            </p>
+          </div>
+
+          <!-- Example 2 -->
+          <div
+            class="financial-report-block"
+            style="border-left-color: #cc0000"
+          >
+            <h2>Compliance Alert: Action Required</h2>
+            <p>
+              Block elements are perfect for separating critical alerts from
+              standard data streams.
+            </p>
+          </div>
+        </div>
+        <br />
+
+        <!-- 8.3 INLINE ELEMENTS -->
+        <div id="inlineElements">
+          <h1>8.3 Inline Elements (Data Highlighting)</h1>
+          <hr />
+          <p>
+            Inline elements (like `&lt;span&gt;`, `&lt;a&gt;`, `&lt;strong&gt;`)
+            do not start on a new line and only take up as much width as
+            necessary. They are used to style specific data points within a text
+            block.
+          </p>
+
+          <div class="financial-report-block">
+            <h3>Transaction Detail View</h3>
+            <p>
+              Transaction ID:
+              <span class="secure-badge">TXN-998877</span> occurred on
+              <time>2025-11-18</time>. Status:
+              <span style="color: #00a04d; font-weight: bold">Completed</span>.
+            </p>
+            <p>
+              Please verify the <a href="#">merchant details</a> before
+              authorizing future payments.
+            </p>
+          </div>
+        </div>
+        <br />
+
+        <!-- 8.4 INLINE-BLOCK ELEMENTS -->
+        <div id="inlineBlockElements">
+          <h1>8.4 Inline-Block Elements (Dashboard Layouts)</h1>
+          <hr />
+          <p>
+            **`display: inline-block`** allows elements to sit next to each
+            other (like inline elements) but still allows you to set specific
+            width, height, padding, and margins (like block elements). This is
+            ideal for dashboard cards.
+          </p>
+
+          <div class="dashboard-card-container">
+            <!-- Card 1 -->
+            <div class="account-card">
+              <h3>Checking ****8899</h3>
+              <div class="balance">$ 4,250.00</div>
+              <small>Available Balance</small>
+            </div>
+
+            <!-- Card 2 -->
+            <div
+              class="account-card"
+              style="
+                background: linear-gradient(135deg, #006600 0%, #004d00 100%);
+              "
+            >
+              <h3>Savings ****1122</h3>
+              <div class="balance">$ 12,500.50</div>
+              <small>Interest Rate: 2.1%</small>
+            </div>
+
+            <!-- Card 3 -->
+            <div
+              class="account-card"
+              style="
+                background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+              "
+            >
+              <h3>Credit Card ****4455</h3>
+              <div class="balance">$ 850.00</div>
+              <small>Payment Due: 25th</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-navigation-bar">
+      <a href="Homepage.html">Home</a>
+      <a href="chapter_01.html">01</a>
+      <a href="chapter_02.html">02</a>
+      <a href="chapter_03.html">03</a>
+      <a href="chapter_04.html">04</a>
+      <a href="chapter_05.html">05</a>
+      <a href="chapter_06.html">06</a>
+      <a href="chapter_07.html">07</a>
+      <a href="chapter_08.html" class="current-chapter">08</a>
+      <a href="chapter_11.html">11</a>
+      <a href="chapter_12.html">12</a>
+      <a href="chapter_13.html">13</a>
+      <a href="chapter_14.html">14</a>
+      <a href="chapter_15.html">15</a>
+      <a href="chapter_16.html">16</a>
+      <a href="chapter_17.html">17</a>
+      <a href="chapter_18.html">18</a>
+      <a href="chapter_19.html">19</a>
+      <a href="chapter_20.html">20</a>
+      <a href="chapter_21.html">21</a>
+      <a href="chapter_22.html">22</a>
+    </div>
+    <footer>
+      <p>Copyright &copy; SecureBank Systems Training Division</p>
+      <address>
+        <p>1207 Udayon Tower, Financial District</p>
+        <p>
+          <a href="tel:01767697795">Support Line</a> |
+          <a href="mailto:inzamamkhan71@gmail.com">Security Operations</a>
+        </p>
+      </address>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureBank - Chapter 12: CSS Selectors</title>
+    <!-- Use the financial stylesheet -->
+    <link rel="stylesheet" href="banking_style.css" />
+    <link rel="icon" href="icon/favicon.png" type="png" />
+    <style>
+      /* --- Internal CSS for Chapter 12 Demonstration --- */
+
+      /* 12.1 Universal Selector */
+      .universal-demo * {
+        /* Target all elements inside this container */
+        color: #333;
+      }
+
+      /* 12.2 Type Selector */
+      h3 {
+        color: #004d99; /* Bank Blue */
+      }
+
+      /* 12.3 ID Selector */
+      #main-heading {
+        text-align: center;
+        text-transform: uppercase;
+        border-bottom: 2px solid #00a04d;
+      }
+
+      /* 12.4 Class Selector */
+      .account-balance {
+        font-weight: bold;
+        color: #004d99;
+      }
+
+      /* 12.5 Multiple-Class Selector */
+      .account-balance.negative {
+        color: #cc0000; /* Red for negative balance */
+      }
+
+      /* 12.6.1 Status of Links */
+      a.audit-link:link {
+        color: #004d99;
+        text-decoration: none;
+      }
+      a.audit-link:visited {
+        color: #551a8b; /* Visited audit logs appear purple */
+      }
+
+      /* 12.6.2 Cursor Interaction */
+      .interactive-btn:hover {
+        background-color: #003366;
+        color: white;
+        cursor: pointer;
+      }
+      .interactive-btn:active {
+        transform: scale(0.98);
+      }
+
+      /* 12.6.3 Status of Elements */
+      input:disabled {
+        background-color: #e0e0e0;
+        cursor: not-allowed;
+      }
+      input:checked + label {
+        font-weight: bold;
+        color: #00a04d;
+      }
+
+      /* 12.6.4 Form Validation */
+      input:required {
+        border-left: 3px solid #004d99;
+      }
+      input:invalid {
+        border-color: #cc0000;
+      }
+
+      /* 12.6.5 Child Elements */
+      ul.audit-list li:first-child {
+        font-weight: bold;
+        color: #004d99;
+      } /* Header row style */
+      ul.audit-list li:nth-child(odd) {
+        background-color: #f9f9f9;
+      } /* Zebra striping */
+
+      /* 12.6.6 Type of Elements */
+      div.policy-section p:first-of-type {
+        font-style: italic;
+      } /* Intro paragraph */
+
+      /* 12.6.7 Other Pseudo-classes */
+      p:empty {
+        display: none;
+      } /* Hide empty alerts */
+
+      /* 12.7 Pseudo-elements */
+      .disclaimer::first-line {
+        font-weight: bold;
+        color: #cc0000;
+      }
+      .amount::before {
+        content: "$ ";
+        color: #555;
+      }
+
+      /* 12.8 Combined Selectors */
+      div.dashboard > p {
+        color: #004d99;
+      } /* Direct Child */
+      h2 + p {
+        margin-top: 0;
+        font-size: 0.9em;
+      } /* Adjacent Sibling */
+
+      /* 12.9 Attribute Selectors */
+      input[type="password"] {
+        border: 1px solid #cc0000;
+      } /* High security input */
+      a[href^="https"] {
+        color: #00a04d;
+      } /* Secure external links */
+    </style>
+  </head>
+  <body>
+    <div class="chapterName">
+      <h1><b> CHAPTER 12</b></h1>
+      <h2><b>CSS Selectors: Targeting Financial Data</b></h2>
+    </div>
+
+    <div class="contentAndTopic">
+      <div class="contents">
+        <h2>Table of Contents</h2>
+        <ol>
+          <li>
+            <a href="#basicSelectors"
+              >Basic Selectors (Universal, Type, ID, Class)</a
+            >
+          </li>
+          <li>
+            <a href="#pseudoClasses">CSS Pseudo-Classes</a>
+            <ol>
+              <li><a href="#linkStatus">Status of Links</a></li>
+              <li><a href="#cursorInteraction">Cursor Interaction</a></li>
+              <li><a href="#elementStatus">Status of Elements</a></li>
+              <li><a href="#formValidation">Form Validation</a></li>
+              <li><a href="#childElements">Child Elements</a></li>
+              <li><a href="#typeElements">Type of Elements</a></li>
+              <li><a href="#otherPseudo">Other Pseudo-classes</a></li>
+            </ol>
+          </li>
+          <li><a href="#pseudoElements">CSS Pseudo-Elements</a></li>
+          <li><a href="#combinedSelectors">CSS Combined Selectors</a></li>
+          <li><a href="#attributeSelectors">CSS Attribute Selectors</a></li>
+          <li><a href="#grouping">Selector Grouping</a></li>
+        </ol>
+      </div>
+
+      <div class="topic">
+        <!-- 12.1 - 12.5 Basic Selectors -->
+        <div id="basicSelectors">
+          <h1>12.1 - 12.5 Basic Selectors</h1>
+          <hr />
+
+          <!-- 12.1 Universal Selector -->
+          <div class="universal-demo">
+            <h3>12.1 Universal Selector (*)</h3>
+            <p>
+              The `*` selector applies a style to ALL elements. We use it to
+              reset basic formatting.
+            </p>
+          </div>
+
+          <!-- 12.2 Type Selector -->
+          <h3>12.2 Type Selector (Element Name)</h3>
+          <p>
+            Targeting all `&lt;h3&gt;` elements to apply the corporate Bank Blue
+            color.
+          </p>
+
+          <!-- 12.3 ID Selector -->
+          <h3 id="main-heading">12.3 ID Selector (#unique)</h3>
+          <p>
+            This heading uses `#main-heading` because it is the unique title of
+            this section.
+          </p>
+
+          <!-- 12.4 Class Selector -->
+          <h3>12.4 Class Selector (.class)</h3>
+          <p>
+            Account Balance:
+            <span class="account-balance">$1,250.00</span> (Styled with
+            `.account-balance`)
+          </p>
+
+          <!-- 12.5 Multiple-Class Selector -->
+          <h3>12.5 Multiple-Class Selector (.class1.class2)</h3>
+          <p>
+            Overdraft Account:
+            <span class="account-balance negative">-$50.00</span> (Styled with
+            `.account-balance.negative`)
+          </p>
+        </div>
+        <hr />
+
+        <!-- 12.6 CSS Pseudo-Classes -->
+        <div id="pseudoClasses">
+          <h1>12.6 CSS Pseudo-Classes (State & Interaction)</h1>
+          <hr />
+
+          <!-- 12.6.1 Status of Links -->
+          <div id="linkStatus">
+            <h3>12.6.1 Status of Links (:link, :visited)</h3>
+            <p>
+              <a href="#" class="audit-link">View Daily Audit Log</a> (Blue:
+              Unvisited | Purple: Visited)
+            </p>
+          </div>
+
+          <!-- 12.6.2 Cursor Interaction -->
+          <div id="cursorInteraction">
+            <h3>12.6.2 Cursor Interaction (:hover, :active)</h3>
+            <button class="interactive-btn">Hover to Authorize</button>
+            <p>
+              Hovering changes color; Clicking (:active) shrinks the button
+              slightly.
+            </p>
+          </div>
+
+          <!-- 12.6.3 Status of Elements -->
+          <div id="elementStatus">
+            <h3>12.6.3 Status of Elements (:enabled, :disabled, :checked)</h3>
+            <input type="text" disabled value="Archived Account (Disabled)" />
+            <br /><br />
+            <input type="checkbox" id="confirm" checked />
+            <label for="confirm"
+              >I agree to the Terms (Label turns green when checked)</label
+            >
+          </div>
+
+          <!-- 12.6.4 Form Validation -->
+          <div id="formValidation">
+            <h3>12.6.4 Form Validation (:invalid, :required)</h3>
+            <input type="email" placeholder="Enter Email (Required)" required />
+            <p>
+              If you type invalid text (not an email), the border turns red.
+            </p>
+          </div>
+
+          <!-- 12.6.5 Child Elements -->
+          <div id="childElements">
+            <h3>12.6.5 Child Elements (:first-child, :nth-child)</h3>
+            <ul class="audit-list">
+              <li>Transaction ID (Header - :first-child)</li>
+              <li>TXN-001 (Odd - :nth-child(odd))</li>
+              <li>TXN-002 (Even)</li>
+              <li>TXN-003 (Odd)</li>
+              <li>TXN-004 (Last - :last-child)</li>
+            </ul>
+          </div>
+
+          <!-- 12.6.6 Type of Elements -->
+          <div id="typeElements">
+            <h3>12.6.6 Type of Elements (:first-of-type)</h3>
+            <div class="policy-section">
+              <p>
+                This paragraph is the `first-of-type` inside this div, so it is
+                italicized (Intro).
+              </p>
+              <p>This is the second paragraph (standard style).</p>
+            </div>
+          </div>
+
+          <!-- 12.6.7 Other Pseudo-classes -->
+          <div id="otherPseudo">
+            <h3>12.6.7 Others (:empty, :not)</h3>
+            <p>The empty paragraph below is hidden by CSS:</p>
+            <p></p>
+            <!-- Empty element -->
+            <p>This paragraph is NOT empty, so it is visible.</p>
+          </div>
+        </div>
+        <hr />
+
+        <!-- 12.7 CSS Pseudo-Elements -->
+        <div id="pseudoElements">
+          <h1>12.7 CSS Pseudo-Elements (Content Injection)</h1>
+          <hr />
+          <h3>12.7.1 ::first-line & 12.7.2 ::first-letter</h3>
+          <p class="disclaimer">
+            WARNING: Authorized Access Only.<br />
+            This system is monitored. The first line of this warning is styled
+            red and bold.
+          </p>
+
+          <h3>12.7.3 ::before & 12.7.4 ::after</h3>
+          <p class="amount">
+            500.00 (The dollar sign is added via CSS ::before)
+          </p>
+        </div>
+        <hr />
+
+        <!-- 12.8 CSS Combined Selectors -->
+        <div id="combinedSelectors">
+          <h1>12.8 CSS Combined Selectors (Relationships)</h1>
+          <hr />
+          <div class="dashboard">
+            <h3>12.8.2 Child Selector (>)</h3>
+            <p>
+              This paragraph is a direct child of `.dashboard` (Styled Blue).
+            </p>
+            <div>
+              <p>This paragraph is nested deeper (Not styled by > selector).</p>
+            </div>
+          </div>
+
+          <h3>12.8.3 Adjacent Sibling Selector (+)</h3>
+          <p>
+            This paragraph immediately follows an H3, so it has reduced top
+            margin.
+          </p>
+        </div>
+        <hr />
+
+        <!-- 12.9 Attribute Selectors -->
+        <div id="attributeSelectors">
+          <h1>12.9 CSS Attribute Selectors (Data Attributes)</h1>
+          <hr />
+          <h3>12.9.2 [attribute="value"] (Exact Match)</h3>
+          <input type="password" placeholder="Password Input (Red Border)" />
+
+          <h3>12.9.5 [attribute^="value"] (Prefix Match)</h3>
+          <a href="https://secure.bank.com"
+            >https://secure.bank.com (Green - Secure Link)</a
+          ><br />
+          <a href="http://unsecure.site.com"
+            >http://unsecure.site.com (Default Color)</a
+          >
+        </div>
+        <hr />
+
+        <!-- 12.10 Selector Grouping -->
+        <div id="grouping">
+          <h1>12.10 Selector Grouping</h1>
+          <hr />
+          <p>
+            <code>h1, h2, h3 { color: #004d99; }</code><br />
+            Grouping selectors allows us to apply the same corporate branding to
+            multiple headings at once, keeping code concise.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- START: Bottom Navigation Bar (Fixed for Chapter 12) -->
+    <div class="bottom-navigation-bar">
+      <a href="Homepage.html">Home</a>
+      <a href="chapter_01.html">01</a>
+      <a href="chapter_02.html">02</a>
+      <a href="chapter_03.html">03</a>
+      <a href="chapter_04.html">04</a>
+      <a href="chapter_05.html">05</a>
+      <a href="chapter_06.html">06</a>
+      <a href="chapter_07.html">07</a>
+      <a href="chapter_08.html">08</a>
+      <a href="chapter_11.html">11</a>
+      <a href="chapter_12.html" class="current-chapter">12</a>
+      <a href="chapter_13.html">13</a>
+      <a href="chapter_14.html">14</a>
+      <a href="chapter_15.html">15</a>
+      <a href="chapter_16.html">16</a>
+      <a href="chapter_17.html">17</a>
+      <a href="chapter_18.html">18</a>
+      <a href="chapter_19.html">19</a>
+      <a href="chapter_20.html">20</a>
+      <a href="chapter_21.html">21</a>
+      <a href="chapter_22.html">22</a>
+    </div>
+    <footer>
+      <p>Copyright &copy; SecureBank Systems Training Division</p>
+      <address>
+        <p>1207 Udayon Tower, Financial District</p>
+        <p>
+          <a href="tel:01767697795">Support Line</a> |
+          <a href="mailto:inzamamkhan71@gmail.com">Security Operations</a>
+        </p>
+      </address>
+    </footer>
+  </body>
+</html>

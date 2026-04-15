@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 22.2 RWD Viewport: Essential for responsive scaling -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureBank - Chapter 22: Responsive Financial Design</title>
+    <!-- Use the financial stylesheet -->
+    <link rel="stylesheet" href="banking_style.css" />
+    <link rel="icon" href="icon/favicon.png" type="png" />
+    <style>
+      /* --- Internal CSS for Chapter 22 Demonstration --- */
+
+      /* 22.4 RWD Grid View (Fluid Layout) */
+      .rwd-grid-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+        background-color: #f0f4f8;
+      }
+
+      .rwd-card {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        flex: 1 1 300px; /* Grow, Shrink, Basis: Min width 300px */
+        text-align: center;
+      }
+
+      .rwd-card h3 {
+        margin-top: 0;
+        color: #004d99;
+      }
+      .rwd-card .value {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #333;
+        margin: 10px 0;
+      }
+      .rwd-card .trend {
+        color: #00a04d;
+        font-size: 0.9em;
+      }
+      .rwd-card .trend.negative {
+        color: #cc0000;
+      }
+
+      /* 22.3 Media Queries Demonstration */
+      .media-query-box {
+        padding: 20px;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+
+      /* Default (Mobile First) */
+      .media-query-box {
+        background-color: #004d99; /* Blue */
+      }
+      .device-label::after {
+        content: "Mobile View (Default)";
+      }
+
+      /* Tablet (Min-width: 600px) */
+      @media only screen and (min-width: 600px) {
+        .media-query-box {
+          background-color: #00a04d; /* Green */
+        }
+        .device-label::after {
+          content: "Tablet View (>600px)";
+        }
+      }
+
+      /* Desktop (Min-width: 992px) */
+      @media only screen and (min-width: 992px) {
+        .media-query-box {
+          background-color: #cc0000; /* Red */
+        }
+        .device-label::after {
+          content: "Desktop View (>992px)";
+        }
+      }
+
+      /* 22.5 Mobile-First vs Desktop-First */
+      .strategy-box {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 10px;
+        background-color: #fff;
+      }
+
+      /* Example: Hide sidebar on mobile (Mobile-First approach) */
+      .sidebar-content {
+        display: none; /* Hidden by default on small screens */
+      }
+      @media (min-width: 768px) {
+        .sidebar-content {
+          display: block; /* Visible only on larger screens */
+          background-color: #e6f2ff;
+          padding: 10px;
+          border-left: 4px solid #004d99;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chapterName">
+      <h1><b> CHAPTER 22</b></h1>
+      <h2><b>Responsive CSS: Adaptive Banking Interfaces</b></h2>
+    </div>
+
+    <div class="contentAndTopic">
+      <div class="contents">
+        <h2>Table of Contents</h2>
+        <ol>
+          <li><a href="#rwdIntro">22.1 Responsive Web Design</a></li>
+          <li><a href="#viewport">22.2 RWD Viewport</a></li>
+          <li>
+            <a href="#mediaQueries">22.3 CSS Media</a>
+            <ol>
+              <li><a href="#mediaTypes">Media Types</a></li>
+              <li><a href="#mediaQuerySyntax">Media Queries</a></li>
+            </ol>
+          </li>
+          <li><a href="#rwdGrid">22.4 RWD Grid View</a></li>
+          <li>
+            <a href="#strategies">22.5 Mobile-First vs. Desktop-First</a>
+            <ol>
+              <li><a href="#mobileFirst">Mobile-First</a></li>
+              <li><a href="#desktopFirst">Desktop-First</a></li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+
+      <div class="topic">
+        <!-- 22.1 Responsive Web Design -->
+        <div id="rwdIntro">
+          <h1>22.1 Responsive Web Design (RWD)</h1>
+          <hr />
+          <p>
+            RWD ensures that our banking application looks good and functions
+            correctly on all devices, from smartphones to large desktop
+            monitors. It uses HTML and CSS to resize, hide, shrink, enlarge, or
+            move content to make it look good on any screen.
+          </p>
+          [Image of Responsive Web Design Layouts]
+        </div>
+        <hr />
+
+        <!-- 22.2 RWD Viewport -->
+        <div id="viewport">
+          <h1>22.2 RWD Viewport</h1>
+          <hr />
+          <p>
+            The viewport is the user's visible area of a web page. It varies
+            with the device. To ensure proper scaling, we must include the
+            following `<meta />` tag in all our HTML headers:
+          </p>
+          <pre style="background-color: #f0f4f8; padding: 10px">
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</pre
+          >
+          <p>
+            <small
+              >Without this, mobile browsers will render the page at desktop
+              width and shrink it down, making text unreadable.</small
+            >
+          </p>
+        </div>
+        <hr />
+
+        <!-- 22.3 CSS Media -->
+        <div id="mediaQueries">
+          <h1>22.3 CSS Media (Queries & Types)</h1>
+          <hr />
+
+          <div id="mediaTypes">
+            <h3>22.3.1 Media Types</h3>
+            <p>Common types include:</p>
+            <ul>
+              <li><strong>all</strong>: Used for all media type devices.</li>
+              <li>
+                <strong>print</strong>: Used for printers (e.g., printing a bank
+                statement).
+              </li>
+              <li>
+                <strong>screen</strong>: Used for computer screens, tablets,
+                smart-phones.
+              </li>
+            </ul>
+          </div>
+
+          <div id="mediaQuerySyntax">
+            <h3>22.3.2 Media Queries (Breakpoint Demo)</h3>
+            <p>
+              Resize your browser window to see the box color and text change
+              below.
+            </p>
+            <div class="media-query-box">
+              Current Device: <span class="device-label"></span>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <!-- 22.4 RWD Grid View -->
+        <div id="rwdGrid">
+          <h1>22.4 RWD Grid View (Fluid Portfolios)</h1>
+          <hr />
+          <p>
+            A responsive grid view often has 12 columns, but for dashboard
+            cards, we use Flexbox with `flex-wrap` to automatically flow items
+            to the next line as screen size decreases.
+          </p>
+
+          <div class="rwd-grid-container">
+            <!-- Card 1 -->
+            <div class="rwd-card">
+              <h3>Total Assets</h3>
+              <div class="value">$145,200.50</div>
+              <div class="trend">+5.2% YTD</div>
+            </div>
+            <!-- Card 2 -->
+            <div class="rwd-card">
+              <h3>Liabilities</h3>
+              <div class="value">$24,000.00</div>
+              <div class="trend negative">-1.2% (Increased)</div>
+            </div>
+            <!-- Card 3 -->
+            <div class="rwd-card">
+              <h3>Liquid Cash</h3>
+              <div class="value">$12,500.00</div>
+              <div class="trend">Stable</div>
+            </div>
+            <!-- Card 4 -->
+            <div class="rwd-card">
+              <h3>Investments</h3>
+              <div class="value">$108,700.50</div>
+              <div class="trend">+8.4% YTD</div>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <!-- 22.5 Mobile-First vs Desktop-First -->
+        <div id="strategies">
+          <h1>22.5 Mobile-First vs. Desktop-First</h1>
+          <hr />
+
+          <div id="mobileFirst">
+            <h3>22.5.1 Mobile-First Strategy (Recommended)</h3>
+            <p>
+              We design for the smallest screen first (default styles), then add
+              complexity for larger screens using `min-width` media queries.
+              This is more performant for mobile devices.
+            </p>
+            <div class="strategy-box">
+              <strong>Example: Sidebar Navigation</strong><br />
+              On Mobile: Hidden (to save space).<br />
+              On Desktop: Visible (Sidebar appears below).
+              <div class="sidebar-content">
+                [Sidebar Menu: Dashboard | Accounts | Settings]
+              </div>
+            </div>
+          </div>
+
+          <div id="desktopFirst">
+            <h3>22.5.2 Desktop-First Strategy</h3>
+            <p>
+              Designing for large screens first, then using `max-width` queries
+              to override styles for smaller screens. This is less common in
+              modern web development but useful for legacy banking desktop apps.
+            </p>
+            <pre style="background-color: #f0f4f8; padding: 10px">
+/* Desktop styles first */
+.container { width: 1000px; }
+
+/* Mobile Override */
+@media (max-width: 768px) {
+  .container { width: 100%; }
+}
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- START: Bottom Navigation Bar (Fixed for Chapter 22) -->
+    <div class="bottom-navigation-bar">
+      <a href="Homepage.html">Home</a>
+      <a href="chapter_01.html">01</a>
+      <a href="chapter_02.html">02</a>
+      <a href="chapter_03.html">03</a>
+      <a href="chapter_04.html">04</a>
+      <a href="chapter_05.html">05</a>
+      <a href="chapter_06.html">06</a>
+      <a href="chapter_07.html">07</a>
+      <a href="chapter_08.html">08</a>
+      <a href="chapter_11.html">11</a>
+      <a href="chapter_12.html">12</a>
+      <a href="chapter_13.html">13</a>
+      <a href="chapter_14.html">14</a>
+      <a href="chapter_15.html">15</a>
+      <a href="chapter_16.html">16</a>
+      <a href="chapter_17.html">17</a>
+      <a href="chapter_18.html">18</a>
+      <a href="chapter_19.html">19</a>
+      <a href="chapter_20.html">20</a>
+      <a href="chapter_21.html">21</a>
+      <a href="chapter_22.html" class="current-chapter">22</a>
+    </div>
+    <footer>
+      <p>Copyright &copy; SecureBank Systems Training Division</p>
+      <address>
+        <p>1207 Udayon Tower, Financial District</p>
+        <p>
+          <a href="tel:01767697795">Support Line</a> |
+          <a href="mailto:inzamamkhan71@gmail.com">Security Operations</a>
+        </p>
+      </address>
+    </footer>
+  </body>
+</html>

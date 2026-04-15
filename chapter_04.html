@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureBank - Chapter 04: Semantic HTML</title>
+    <link rel="stylesheet" href="banking_style.css" />
+    <link rel="icon" href="icon/favicon.png" type="png" />
+    <style>
+      /* Styling for the Details/Summary Accordion */
+      details {
+        border: 1px solid #004d99; /* Primary bank blue border */
+        border-radius: 4px;
+        padding: 10px;
+        margin: 15px 0;
+        background-color: #f0f4f8; /* Light background */
+      }
+      summary {
+        font-weight: bold;
+        cursor: pointer;
+        padding: 5px 0;
+        color: #004d99;
+      }
+      /* Styling for the Figure/Figcaption (Chart Placeholder) */
+      figure {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 20px 0;
+        text-align: center;
+        background-color: #ffffff;
+      }
+      figure img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto 10px auto;
+      }
+      figcaption {
+        font-style: italic;
+        font-size: 0.9em;
+        color: #555;
+        padding-top: 5px;
+        border-top: 1px dashed #e0e0e0;
+      }
+     
+    </style>
+  </head>
+  <body>
+    <div class="chapterName">
+      <h1><b> CHAPTER 04</b></h1>
+      <h2><b>Semantic HTML: Structuring Financial Content</b></h2>
+    </div>
+
+    <div class="contentAndTopic">
+      <nav class="contents">
+        <h2>Table of Contents</h2>
+        <ol>
+          <li><a href="#semanticElements">Semantic Elements</a>
+            <ol>
+              <li><a href="#blockquote">Blockquote (External Quotes)</a></li>
+              <li><a href="#address">Address (Contact Information)</a></li>
+              <li><a href="#detailsSummary">Details & Summary (Accordions)</a></li>
+              <li><a href="#figureFigcaption">Figure & Figcaption (Charts)</a></li>
+            </ol>
+          </li>
+          <li><a href="#semanticLayoutElements">Semantic Layout Elements</a></li>
+          <li><a href="#semanticFormattingElements">Semantic Formatting Elements</a></li>
+        </ol>
+      </nav>
+
+      <div class="topic">
+        
+        <div id="semanticElements">
+          <h1>4.1 Semantic Elements (Data Meaning)</h1>
+          <hr />
+
+          <div id="blockquote">
+            <h2>4.1.1 Blockquote (Quoting External Regulations)</h2>
+            <p>
+              The Chief Compliance Officer released a statement regarding the new KYC (Know Your Customer) rules:
+            </p>
+            <blockquote cite="https://www.fincen.gov/regulations/kyc-update">
+              <p>
+                "All financial institutions must implement enhanced due diligence measures for all new high-risk client accounts, effective immediately. Failure to comply will result in substantial regulatory penalties."
+              </p>
+              <footer>— FinCEN Regulatory Notice 2025-01</footer>
+            </blockquote>
+          </div>
+
+          <div id="address">
+            <h2>4.1.2 Address (Contact & Geographic Data)</h2>
+            <p>
+              The  &ltaddress&gt tag is used to provide contact information for the nearest branch or the document author (typically found in the footer, but shown here for context):
+            </p>
+            <address>
+              <p>SecureBank North Sector Branch</p>
+              <p>
+                <a href="mailto:northbranch@securebank.com">northbranch@securebank.com</a><br>
+                <a href="tel:+18001234567">1-800-123-4567</a><br>
+                101 Financial Park Lane, Suite 500<br>
+                New York, NY 10005
+              </p>
+            </address>
+          </div>
+
+          <div id="detailsSummary">
+            <h2>4.1.3 Details and Summary (Collapsible Risk Disclosures)</h2>
+            <p>
+              Use &ltdetails&gt for sections that are initially hidden, such as required disclosures or complex technical explanations.
+            </p>
+            <details>
+              <summary>Key Investment Disclosure: Read Before Proceeding</summary>
+              <p>
+                **Risk Warning:** Investment values may fall as well as rise. Past performance is not an indicator of future results. Capital is at risk. This product is not FDIC insured.
+              </p>
+              <ul>
+                <li>Liquidity risk is considered moderate.</li>
+                <li>Credit risk is minimal (AAA rated portfolio).</li>
+              </ul>
+            </details>
+            <details>
+                <summary>Technical Data: API Status Code Glossary</summary>
+                <p>
+                    <dl>
+                        <dt>200 OK</dt>
+                        <dd>Transaction successfully posted.</dd>
+                        <dt>401 Unauthorized</dt>
+                        <dd>Invalid API key or session expired.</dd>
+                        <dt>403 Forbidden</dt>
+                        <dd>Access denied to the requested account data.</dd>
+                    </dl>
+                </p>
+            </details>
+          </div>
+
+          <div id="figureFigcaption">
+            <h2>4.1.4 Figure and Figcaption (Charts and Visual Data)</h2>
+            <p>
+              The `&ltfigure&gt` element is used to mark up a chart or image (`<img>`) that is referred to from the main flow of the text, with its title/description provided by `<figcaption>`.
+            </p>
+            <figure>
+              <img src="images/vix-chart-1990-2013.png" alt="Line chart showing stock volatility." style="max-width: 600px;">
+              <figcaption>Figure 4.1: Yearly Volatility Index (VIX) from 1990 to 2013.</figcaption>
+            </figure>
+          </div>
+        </div>
+        <hr>
+
+        <div id="semanticLayoutElements">
+          <h1>4.2 Semantic Layout Elements (Report Structure)</h1>
+          <hr />
+          <p>
+            Semantic layout tags help search engines and accessibility tools understand the purpose of different parts of the financial report interface.
+          </p>
+
+          <header style="border: 1px solid #e0e0e0; padding: 10px; background-color: #f9f9f9;">
+            <p>
+              **&lt;header&gt;:** Contains the main heading and bank logo.
+            </p>
+          </header>
+
+          <nav style="border: 1px solid #e0e0e0; padding: 10px; margin: 10px 0; background-color: #f9f9f9;">
+            <p>
+              **&lt;nav&gt;:** Contains primary links like Dashboard, Portfolio, and Settings.
+            </p>
+          </nav>
+
+          <main style="border: 1px solid #e0e0e0; padding: 10px; margin: 10px 0; background-color: #ffffff;">
+            <p>
+              **&lt;main&gt;:** Contains the unique content of this page (e.g., the full report content).
+            </p>
+            
+            <section style="border: 1px solid #ccc; padding: 10px; margin: 10px 0; background-color: #fffde7;">
+              <h2>Market Liquidity Report</h2>
+              <p>
+                **&lt;section&gt;:** A standalone, grouped piece of content, such as a major sub-report. This section covers market liquidity risks.
+              </p>
+            </section>
+            
+            <article style="border: 1px solid #ccc; padding: 10px; margin: 10px 0; background-color: #e6f2ff;">
+              <h3>Global Investment Outlook</h3>
+              <p>
+                **&lt;article&gt;:** A self-contained piece of content, like a published news article or blog post, that could be reused elsewhere. This article details the 2026 investment strategy.
+              </p>
+            </article>
+
+            <aside style="float: right; width: 30%; border: 1px solid #c00; padding: 10px; margin-left: 10px; background-color: #ffe0e0;">
+              <p>
+                **&lt;aside&gt;:** Content related to the main content but separate from it, like a **Compliance Sidebar** or related market data.
+              </p>
+            </aside>
+            <p>This is the main body text flow...</p>
+            <div style="clear: both;"></div>
+          </main>
+          
+          <footer style="background-color: #f0f4f8; padding: 10px; text-align: left; margin-top: 10px; color: #333;">
+            <p>
+              **&lt;footer&gt;:** Contains copyright information, regulatory links, and **&lt;address&gt;** data (see below).
+            </p>
+          </footer>
+        </div>
+        <hr>
+
+        <div id="semanticFormattingElements">
+          <h1>4.3 Semantic Formatting Elements</h1>
+          <hr />
+          
+          <div id="strong">
+            <h2>4.3.1 Strong (`&lt;strong&gt;`) - Importance</h2>
+            <p>
+              Clients must acknowledge that capital is **strongly** at risk, and that the final decision rests with the account manager.
+              The new wire transfer limit is **$50,000 USD** per day.
+            </p>
+          </div>
+
+          <div id="em">
+            <h2>4.3.2 Emphasized (`&lt;em&gt;`) - Accentuation</h2>
+            <p>
+              The system should *never* allow a negative balance on a standard checking account unless explicitly authorized by the bank manager. This is a *critical* security protocol.
+            </p>
+          </div>
+        </div>
+        
+        <br />
+      </div>
+    </div>
+    
+    <div class="bottom-navigation-bar">
+      <a href="Homepage.html">Home</a>
+        <a href="chapter_01.html">01</a>
+        <a href="chapter_02.html">02</a>
+        <a href="chapter_03.html">03</a>
+        <a href="chapter_04.html" class="current-chapter">04</a>
+        <a href="chapter_05.html">05</a>
+        <a href="chapter_06.html">06</a>
+        <a href="chapter_07.html">07</a>
+        <a href="chapter_08.html">08</a>
+        <a href="chapter_11.html">11</a>
+        <a href="chapter_12.html">12</a>
+        <a href="chapter_13.html">13</a>
+        <a href="chapter_14.html">14</a>
+        <a href="chapter_15.html">15</a>
+        <a href="chapter_16.html">16</a>
+        <a href="chapter_17.html">17</a>
+        <a href="chapter_18.html">18</a>
+        <a href="chapter_19.html">19</a>
+        <a href="chapter_20.html">20</a>
+        <a href="chapter_21.html">21</a>
+        <a href="chapter_22.html">22</a>
+    </div>
+    <footer>
+      <p>Copyright &copy; SecureBank Systems Training Division</p>
+      <address>
+        <p>1207 Udayon Tower, Financial District</p>
+        <p>
+          <a href="tel:01767697795">Support Line</a> |
+          <a href="mailto:inzamamkhan71@gmail.com">Security Operations</a>
+        </p>
+      </address>
+    </footer>
+
+  </body>
+</html>

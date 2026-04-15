@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureBank - Chapter 11: Introduction to CSS</title>
+    <!-- Use the financial stylesheet -->
+    <link rel="stylesheet" href="banking_style.css" />
+    <link rel="icon" href="icon/favicon.png" type="png" />
+    <style>
+      /* --- Internal CSS for Demonstrations --- */
+      
+      /* 11.5.2 Internal CSS Example */
+      .internal-style-box {
+        background-color: #e6f2ff; /* Light Blue */
+        border: 2px solid #004d99;
+        padding: 15px;
+        margin-bottom: 20px;
+        color: #004d99;
+        font-weight: bold;
+      }
+      
+      /* 11.3 CSS Units Examples */
+      .unit-example-box {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+      }
+      .unit-example-box h4 {
+          margin-top: 0;
+          color: #333;
+      }
+      
+      /* Absolute Lengths */
+      .px-unit { font-size: 24px; }
+      .pt-unit { font-size: 18pt; } /* Used for print/fixed reports */
+
+      /* Relative Lengths */
+      .parent-em { 
+          font-size: 20px; 
+          background-color: #ccffcc;
+          padding: 10px;
+          margin-bottom: 15px;
+      }
+      .em-unit { font-size: 1.5em; /* 1.5 * 20px = 30px */ }
+      .rem-unit { font-size: 1.5rem; /* 1.5 * root font size (typically 16px) */ }
+
+      /* 11.4 Shorthand Property Example */
+      .shorthand-box {
+        width: 700px;
+        height: 100px;
+        /* Shorthand: border: [width] [style] [color] */
+        border: 5px solid #00a04d;
+        /* Shorthand: margin: [top] [right] [bottom] [left] */
+        margin: 20px 0 10px 0;
+        /* Shorthand: padding: [top] [right] [bottom] [left] */
+        padding: 10px 15px 10px 15px;
+        background-color: #ffffff;
+      }
+
+      /* 11.4 Non-Shorthand Comparison */
+      .non-shorthand-box {
+        width: 700px;
+        height: 200px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #cc0000;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        margin-left: 0;
+        margin-right: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: #ffffff;
+        overflow: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chapterName">
+      <h1><b> CHAPTER 11</b></h1>
+      <h2><b>Introduction to CSS: Styling the Financial Interface</b></h2>
+    </div>
+
+    <div class="contentAndTopic">
+      <nav class="contents">
+        <h2>Table of Contents</h2>
+        <ol>
+          <li><a href="#cssIntro">CSS Introduction (Syntax & Comments)</a></li>
+          <li><a href="#cssUnits">CSS Units (Precision & Scaling)</a>
+            <ol>
+                <li><a href="#absoluteLengths">Absolute Lengths</a></li>
+                <li><a href="#relativeLengths">Relative Lengths (em, rem)</a></li>
+            </ol>
+          </li>
+          <li><a href="#shorthandProperties">Shorthand Properties (Efficiency)</a></li>
+          <li><a href="#cssPlacement">CSS Placement (Where to Put CSS)</a></li>
+          <li><a href="#userAgents">User Agent Styles</a></li>
+        </ol>
+      </nav>
+      <div class="topic">
+        
+        <!-- 11.1 CSS SYNTAX & 11.2 COMMENTS IN CSS -->
+        <div id="cssIntro">
+          <h1>11.1 Syntax & 11.2 Comments (System Documentation)</h1>
+          <hr />
+          <p>
+            CSS (**Cascading Style Sheets**) governs the visual presentation of our financial dashboard. Correct syntax is critical for consistent application across all browsers.
+          </p>
+          
+          <h2>11.1 CSS Syntax</h2>
+          <p>A rule set consists of a selector, property, and value, defining how a component looks.</p>
+          <pre style="background-color: #f0f4f8; padding: 10px; border-radius: 4px;">
+            /* Selector targets the element to be styled */
+            .account-balance {
+              /* Property: Value; - Declaration Block */
+              color: #004d99; /* Declares the text color */
+              font-size: 1.5rem; /* Declares the text size */
+            }
+          </pre>
+
+          <h2>11.2 Comments in CSS</h2>
+          <p>
+            Comments are used for documenting complex styles, audit trails, and separating style sections. They are denoted by `/* comment */`.
+          </p>
+          <pre style="background-color: #f0f4f8; padding: 10px; border-radius: 4px;">
+            /* --- BEGIN Q4 2025 STYLING AUDIT --- */
+            /* Ensure all critical alerts use 'red' */
+            .alert-critical {
+              /* Do not delete: Required by Accessibility Standard AA */
+              color: red;
+            }
+          </pre>
+        </div>
+        <br>
+        
+        <!-- 11.3 CSS UNITS -->
+        <div id="cssUnits">
+          <h1>11.3 CSS Units (Precision and Scaling)</h1>
+          <hr />
+          <p>
+            Choosing the correct unit dictates whether a component's size is **fixed** (for print) or **responsive** (for dashboards).
+          </p>
+          
+          <div id="absoluteLengths">
+            <h2>11.3.1 Absolute Lengths (Fixed Dimensions)</h2>
+            <p>
+              Absolute units (like **px** and **pt**) are fixed and do not scale with the screen size. They are suitable for elements that must maintain a specific physical dimension.
+            </p>
+            <div class="unit-example-box">
+                <h4>Pixel (px) Example: Fixed Icon Size</h4>
+                <p class="px-unit">This text size is 24px.</p>
+            </div>
+            <div class="unit-example-box">
+                <h4>Point (pt) Example: Print Typography</h4>
+                <p class="pt-unit">This text size is 18pt.</p>
+            </div>
+          </div>
+          
+          <div id="relativeLengths">
+            <h2>11.3.2 Relative Lengths (Adaptive Scaling)</h2>
+            <p>
+              Relative units scale based on a reference point (e.g., parent font size or viewport size), making them essential for a **responsive financial dashboard**.
+            </p>
+            
+            <div class="parent-em">
+                <div id="em">
+                    <h3>11.3.2.1 em (Relative to Parent's Font Size)</h3>
+                    <p>Parent Font Size: 20px</p>
+                    <p class="em-unit">Child text is 1.5em (scales based on this parent box).</p>
+                </div>
+            </div>
+            
+            <div class="unit-example-box">
+                <div id="rem">
+                    <h3>11.3.2.2 rem (Relative to Root Font Size)</h3>
+                    <p class="rem-unit">This text is 1.5rem (scales based on the browser's default setting, typically 16px).</p>
+                </div>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <!-- 11.4 SHORTHAND PROPERTIES -->
+        <div id="shorthandProperties">
+          <h1>11.4 Shorthand Properties (Coding Efficiency)</h1>
+          <hr />
+          <p>
+            Shorthand properties combine multiple related CSS declarations into a single, efficient line. This reduces file size and complexity, improving system performance.
+          </p>
+          
+          <h2>Shorthand Example: Margin, Padding, and Border</h2>
+          <div class="shorthand-box" id="shorthandCode">
+            <p>
+              Shorthand Border/Margin/Padding (Efficient Code)
+              <pre>border: 5px solid #00a04d; margin: 20px 0 10px 0; padding: 10px 15px 10px 15px;</pre>
+            </p>
+          </div>
+
+          <div class="non-shorthand-box">
+            <p>Non-Shorthand Comparison (Verbose Code)</p>
+            <pre>width: 300px;
+              height: 100px;
+              border-width: 5px;
+              border-style: solid;
+              border-color: #cc0000;
+              margin-top: 20px;
+              margin-bottom: 10px;
+              margin-left: 0;
+              margin-right: 0;
+              padding-top: 10px;
+              padding-bottom: 10px;
+              padding-left: 15px;
+              padding-right: 15px;
+              background-color: #ffffff;
+            </pre>
+          </div>
+        </div>
+        <br>
+        
+        <!-- 11.5 WHERE DO WE PUT OUR CSS? & 11.6 USER AGENT STYLE SHEETS -->
+        <div id="cssPlacement">
+          <h1>11.5 CSS Placement & 11.6 User Agent Styles</h1>
+          <hr />
+          
+          <h2>11.5 Where Do We Put Our CSS? (Deployment Strategy)</h2>
+          <p>The placement of CSS affects its scope and priority (cascading).</p>
+          
+          <div id="inlineCSS">
+            <h3>11.5.1 Inline CSS (Local Overrides)</h3>
+            <p style="color: #cc0000; font-weight: bold;">
+              Inline CSS is applied directly to an element using the `style` attribute (e.g., this text is red). Use sparingly for local, one-off overrides.
+            </p>
+          </div>
+          
+          <div id="internalCSS">
+            <h3>11.5.2 Internal CSS (Page-Specific Styles)</h3>
+            <div class="internal-style-box">
+              Internal CSS is placed within the &ltstyle&gt tags in the document's  &lthead&gt. It is used for styles unique to this single page. (This box is styled via Internal CSS).
+            </div>
+          </div>
+          
+          <div id="externalCSS">
+            <h3>11.5.3 External CSS (Global Branding)</h3>
+            <p>
+              External CSS is in a separate file (e.g., `banking_style.css`) and linked via &ltlink&gt. This is the **standard method** for global branding and maintaining consistency across the entire banking platform.
+            </p>
+          </div>
+          
+          <h2>11.6 User Agent Style Sheets</h2>
+          <p>
+            These are the default styles provided by the browser (e.g., Chrome, Firefox). They define how a default `&lt;h1&gt;` looks. Your custom CSS **overrides** these default User Agent styles.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- START: Bottom Navigation Bar (Fixed for Chapter 11) -->
+    <div class="bottom-navigation-bar">
+      <a href="Homepage.html">Home</a>
+      <a href="chapter_01.html">01</a>
+      <a href="chapter_02.html">02</a>
+      <a href="chapter_03.html">03</a>
+      <a href="chapter_04.html">04</a>
+      <a href="chapter_05.html">05</a>
+      <a href="chapter_06.html">06</a>
+      <a href="chapter_07.html">07</a>
+      <a href="chapter_08.html">08</a>
+      <a href="chapter_11.html" class="current-chapter">11</a>
+      <a href="chapter_12.html">12</a>
+      <a href="chapter_13.html">13</a>
+      <a href="chapter_14.html">14</a>
+      <a href="chapter_15.html">15</a>
+      <a href="chapter_16.html">16</a>
+      <a href="chapter_17.html">17</a>
+      <a href="chapter_18.html">18</a>
+      <a href="chapter_19.html">19</a>
+      <a href="chapter_20.html">20</a>
+      <a href="chapter_21.html">21</a>
+      <a href="chapter_22.html">22</a>
+    </div>
+    <footer>
+      <p>Copyright &copy; SecureBank Systems Training Division</p>
+      <address>
+        <p>1207 Udayon Tower, Financial District</p>
+        <p>
+          <a href="tel:01767697795">Support Line</a> |
+          <a href="mailto:inzamamkhan71@gmail.com">Security Operations</a>
+        </p>
+      </address>
+    </footer>
+  </body>
+</html>

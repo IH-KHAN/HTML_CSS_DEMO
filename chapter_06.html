@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureBank - Chapter 06: HTML Multimedia</title>
+    <!-- Linking to the main banking theme stylesheet -->
+    <link rel="stylesheet" href="banking_style.css" />
+    <link rel="icon" href="icon/favicon.png" type="png" />
+    <style>
+      /* --- Multimedia Section Styling --- */
+      .media-container {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .media-header {
+        margin-bottom: 15px;
+        border-bottom: 2px solid #004d99; /* Bank Blue */
+        padding-bottom: 10px;
+      }
+
+      .media-header h2 {
+        color: #004d99;
+        margin: 0;
+        font-size: 1.4em;
+      }
+
+      .media-description {
+        font-size: 0.95em;
+        color: #555;
+        margin-bottom: 15px;
+      }
+
+      /* Audio Player Styling */
+      audio {
+        width: 100%;
+        max-width: 600px;
+        margin-top: 10px;
+        border-radius: 30px; /* Rounded player */
+        background-color: #f1f3f4;
+      }
+
+      /* Video Player Styling */
+      video {
+        width: 100%;
+        max-width: 800px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background-color: #000; /* Black background before load */
+      }
+
+      /* Transcript / Caption box */
+      .transcript-box {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-left: 4px solid #00a04d; /* Green accent */
+        font-size: 0.9em;
+      }
+      .transcript-box h3 {
+        margin-top: 0;
+        font-size: 1em;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chapterName">
+      <h1><b> CHAPTER 06</b></h1>
+      <h2><b>HTML Multimedia: Investor Relations & Training</b></h2>
+    </div>
+
+    <div class="contentAndTopic">
+      <div class="contents">
+        <h2>Table of Contents</h2>
+        <ol>
+          <li><a href="#audio">Audio (Reports & Updates)</a></li>
+          <li><a href="#video">Video (Presentations & Guides)</a></li>
+        </ol>
+      </div>
+
+      <div class="topic">
+        <!-- 6.1 AUDIO -->
+        <div id="audio">
+          <div class="media-container">
+            <div class="media-header">
+              <h1>6.1 Audio</h1>
+              <h2>Q4 2025 Earnings Call Highlights</h2>
+            </div>
+            <p class="media-description">
+              Listen to the CFO's summary of the quarter's financial
+              performance, key growth metrics, and strategic outlook for the
+              upcoming fiscal year.
+            </p>
+            <audio controls loop>
+              <source src="/media/speech.mp3" type="audio/mpeg" />
+              <source src="placeholder_audio_file.ogg" type="audio/ogg" />
+              Your browser does not support the audio element.
+            </audio>
+
+            <div class="transcript-box">
+              <h3>Key Takeaways:</h3>
+              <ul>
+                <li>Revenue up by 12% year-over-year.</li>
+                <li>Digital banking adoption increased by 25%.</li>
+                <li>New sustainability initiatives launched in Europe.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <br />
+
+        <!-- 6.2 VIDEO -->
+        <div id="video">
+          <div class="media-container">
+            <div class="media-header">
+              <h1>6.2 Video</h1>
+              <h2>CEO's Annual Strategy Address</h2>
+            </div>
+            <p class="media-description">
+              A video presentation outlining SecureBank's "Future-First"
+              strategy, focusing on AI integration in fraud detection and
+              personalized wealth management.
+            </p>
+            <video
+              controls
+              width="800"
+              height="450"
+              poster="media/Thumbnail.png"
+            >
+              <source src="/media/Video.mp4" type="video/mp4" />
+            </video>
+
+            <div class="transcript-box">
+              <h3>Video Summary:</h3>
+              <p>
+                The CEO discusses the roadmap for 2026, emphasizing customer
+                security and the rollout of the new 'SecureInvest' platform.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-navigation-bar">
+      <a href="Homepage.html">Home</a>
+      <a href="chapter_01.html">01</a>
+      <a href="chapter_02.html">02</a>
+      <a href="chapter_03.html">03</a>
+      <a href="chapter_04.html">04</a>
+      <a href="chapter_05.html">05</a>
+      <a href="chapter_06.html" class="current-chapter">06</a>
+      <a href="chapter_07.html">07</a>
+      <a href="chapter_08.html">08</a>
+      <a href="chapter_11.html">11</a>
+      <a href="chapter_12.html">12</a>
+      <a href="chapter_13.html">13</a>
+      <a href="chapter_14.html">14</a>
+      <a href="chapter_15.html">15</a>
+      <a href="chapter_16.html">16</a>
+      <a href="chapter_17.html">17</a>
+      <a href="chapter_18.html">18</a>
+      <a href="chapter_19.html">19</a>
+      <a href="chapter_20.html">20</a>
+      <a href="chapter_21.html">21</a>
+      <a href="chapter_22.html">22</a>
+    </div>
+    <footer>
+      <p>Copyright &copy; SecureBank Systems Training Division</p>
+      <address>
+        <p>1207 Udayon Tower, Financial District</p>
+        <p>
+          <a href="tel:01767697795">Support Line</a> |
+          <a href="mailto:inzamamkhan71@gmail.com">Security Operations</a>
+        </p>
+      </address>
+    </footer>
+  </body>
+</html>

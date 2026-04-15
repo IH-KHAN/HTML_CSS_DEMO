@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureBank - Chapter 17: Branding & Visual Depth</title>
+    <!-- Use the financial stylesheet -->
+    <link rel="stylesheet" href="banking_style.css" />
+    <link rel="icon" href="icon/favicon.png" type="png" />
+    <style>
+      /* --- Internal CSS for Chapter 17 Demonstration --- */
+
+      /* 17.1.1 background-color */
+      .bg-color-demo {
+        background-color: #e6f2ff; /* Light Blue Background */
+        padding: 15px;
+        border: 1px solid #004d99;
+      }
+
+      /* 17.1.2 background-image */
+      .bg-image-demo {
+        width: 100%;
+        height: 150px;
+        /* Placeholder pattern for demonstration */
+        background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="2" fill="%23004d99" fill-opacity="0.1"/></svg>');
+        border: 1px solid #ccc;
+      }
+
+      /* 17.1.3 background-repeat */
+      .bg-repeat-no {
+        width: 100%;
+        height: 100px;
+        background-image: url("/icon/favicon.png"); /* Using favicon as example */
+        background-repeat: repeat;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        background-size: 100px auto;
+      }
+
+      /* 17.1.4 background-position */
+      .bg-position-center {
+        width: 100%;
+        height: 100px;
+        background-image: url("/icon/business-report.png");
+        background-repeat: no-repeat;
+        background-position: center; /* Center the icon */
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        background-size: 75px auto;
+      }
+
+      /* 17.1.5 background-size */
+      .bg-size-contain {
+        width: 150px;
+        height: 150px;
+        background-image: url("/icon/online-shop.png");
+        background-size: contain; /* Fit image within box */
+        background-repeat: no-repeat;
+        border: 1px solid #ccc;
+        display: inline-block;
+      }
+      .bg-size-cover {
+        width: 150px;
+        height: 150px;
+        background-image: url("/icon/online-shop.png");
+        background-size: cover; /* Cover entire box (cropping) */
+        background-repeat: no-repeat;
+        border: 1px solid #ccc;
+        display: inline-block;
+      }
+
+      /* 17.1.7 background-clip */
+      .bg-clip-content {
+        background-color: #004d99;
+        padding: 20px;
+        border: 5px dashed #ccc;
+        background-clip: content-box; /* Color only inside content area */
+        color: white;
+      }
+      /* 17.1.8 background-origin */
+      .bg-origin-border {
+        background-image: url("icon/investment.png"); /* Assuming this is your icon path */
+        background-repeat: no-repeat;
+        padding: 20px;
+        border: 5px dashed #ccc;
+        background-origin: border-box; /* Image starts from outer border edge */
+        background-position: right; /* Centers the image relative to the origin area */
+        background-size: 50px auto;
+        background-position-x: 650px;
+        color: rebeccapurple;
+      }
+
+      /* 17.1.9 background-attachment */
+      .bg-attachment-fixed {
+        height: 150px;
+        overflow-y: scroll;
+        background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg"><text x="5" y="25" font-size="10" fill="%23ccc">SECURE</text></svg>');
+        background-attachment: local; /* Scrolls with content */
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+
+      /* 17.2 Gradients */
+      .linear-grad {
+        height: 100px;
+        background: linear-gradient(
+          to right,
+          #004d99,
+          #00a04d
+        ); /* Blue to Green */
+        color: white;
+        padding: 10px;
+      }
+
+      .repeating-linear {
+        height: 100px;
+        background: repeating-linear-gradient(
+          45deg,
+          #f0f4f8,
+          #f0f4f8 10px,
+          #e0e0e0 10px,
+          #e0e0e0 20px
+        ); /* Security striping pattern */
+        border: 1px solid #ccc;
+      }
+
+      .radial-grad {
+        height: 150px;
+        background: radial-gradient(circle, #ffffff, #e6f2ff, #004d99);
+        border: 1px solid #ccc;
+      }
+
+      /* 17.3 CSS Sprites */
+      .sprite-container {
+        display: flex;
+        gap: 10px;
+      }
+      .icon-sprite {
+        width: 32px;
+        height: 32px;
+        /* Updated to use the JPG file */
+        background-image: url("/icon/CSSSprite.jpg");
+        display: inline-block;
+        background-repeat: no-repeat;
+
+        /* KEY TO PREVENT DISTORTION: 
+     Width = 4 icons * 32px = 128px. 
+     Height = auto (maintains original proportions). */
+        background-size: 128px auto;
+      }
+
+      /* Icon 2: Home (Skips the first 32px arrow) */
+      .icon-home {
+        background-position: -3px -10px;
+      }
+
+      /* Icon 3: Settings (Skips first 64px) */
+      .icon-settings {
+        background-position: -50px -10px;
+      }
+
+      /* Icon 4: Search/User (Skips first 96px) */
+      .icon-user {
+        background-position: -95px -10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chapterName">
+      <h1><b> CHAPTER 17</b></h1>
+      <h2><b>CSS Backgrounds: Branding & Visual Depth</b></h2>
+    </div>
+
+    <div class="contentAndTopic">
+      <div class="contents">
+        <h2>Table of Contents</h2>
+        <ol>
+          <li>
+            <a href="#bgProperties">CSS Background Properties</a>
+            <ol>
+              <li><a href="#bgColor">background-color</a></li>
+              <li><a href="#bgImage">background-image</a></li>
+              <li><a href="#bgRepeat">background-repeat</a></li>
+              <li><a href="#bgPosition">background-position</a></li>
+              <li><a href="#bgSize">background-size</a></li>
+              <li><a href="#bgShorthand">background (Shorthand)</a></li>
+              <li><a href="#bgClip">background-clip</a></li>
+              <li><a href="#bgOrigin">background-origin</a></li>
+              <li><a href="#bgAttachment">background-attachment</a></li>
+            </ol>
+          </li>
+          <li>
+            <a href="#gradients">CSS Gradient Backgrounds</a>
+            <ol>
+              <li><a href="#linearGrad">Linear Gradients</a></li>
+              <li><a href="#repeatLinear">Repeating Linear Gradients</a></li>
+              <li><a href="#radialGrad">Radial Gradients</a></li>
+              <li><a href="#repeatRadial">Repeating Radial Gradients</a></li>
+            </ol>
+          </li>
+          <li><a href="#sprites">CSS Sprites</a></li>
+        </ol>
+      </div>
+
+      <div class="topic">
+        <!-- 17.1 CSS Background Properties -->
+        <div id="bgProperties">
+          <h1>17.1 CSS Background Properties</h1>
+          <hr />
+
+          <div id="bgColor">
+            <h3>17.1.1 background-color</h3>
+            <p>
+              Sets the base color for an element. Used for card backgrounds and
+              sections.
+            </p>
+            <div class="bg-color-demo">
+              Account Overview Section (Light Blue Background)
+            </div>
+          </div>
+          <br />
+
+          <div id="bgImage">
+            <h3>17.1.2 background-image</h3>
+            <p>
+              Sets an image or pattern. Often used for subtle security
+              watermarks.
+            </p>
+            <div class="bg-image-demo"></div>
+          </div>
+          <br />
+
+          <div id="bgRepeat">
+            <h3>17.1.3 background-repeat</h3>
+            <p>Controls if/how the image repeats.</p>
+            <div class="bg-repeat-no"></div>
+          </div>
+          <br />
+
+          <div id="bgPosition">
+            <h3>17.1.4 background-position</h3>
+            <p>
+              Positions the image (e.g., center, top-right). Essential for
+              aligning icons.
+            </p>
+            <div class="bg-position-center"></div>
+          </div>
+          <br />
+
+          <div id="bgSize">
+            <h3>17.1.5 background-size</h3>
+            <p>Controls the size of the image relative to its container.</p>
+            <div>
+              <div class="bg-size-contain"></div>
+              Contain (Fit)
+              <div class="bg-size-cover"></div>
+              Cover (Fill)
+            </div>
+          </div>
+          <br />
+
+          <div id="bgShorthand">
+            <h3>17.1.6 background (Shorthand)</h3>
+            <p>
+              Combines color, image, repeat, position, and size in one line.
+            </p>
+            <pre style="background-color: #f0f4f8; padding: 10px">
+background: #ffffff url('icon.png') no-repeat center / contain;</pre
+            >
+          </div>
+          <br />
+
+          <div id="bgClip">
+            <h3>17.1.7 background-clip</h3>
+            <p>
+              Defines how far the background extends (border-box, padding-box,
+              content-box).
+            </p>
+            <div class="bg-clip-content">
+              Content Box Clip: The blue background stops at the padding edge.
+            </div>
+          </div>
+          <br />
+
+          <div id="bgOrigin">
+            <h3>17.1.8 background-origin</h3>
+            <p>
+              Specifies where the background image is positioned relative to the
+              box model.
+            </p>
+            <div class="bg-origin-border">
+              Border Box Origin: Image starts at the top-left of the border.
+            </div>
+          </div>
+          <br />
+
+          <div id="bgAttachment">
+            <h3>17.1.9 background-attachment</h3>
+            <p>
+              Determines if the background scrolls with the content (`local`) or
+              stays fixed (`fixed`).
+            </p>
+            <div class="bg-attachment-fixed">
+              Scroll this box.<br />
+              (Security Watermark Scrolls)<br /><br /><br /><br /><br />
+              End of content.
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <!-- 17.2 CSS Gradient Backgrounds -->
+        <div id="gradients">
+          <h1>17.2 CSS Gradient Backgrounds</h1>
+          <hr />
+
+          <div id="linearGrad">
+            <h3>17.2.1 Linear Gradients</h3>
+            <p>
+              Creates a smooth transition along a line. Used for modern headers
+              and buttons.
+            </p>
+            <div class="linear-grad">SecureBank Header (Blue to Green)</div>
+          </div>
+          <br />
+
+          <div id="repeatLinear">
+            <h3>17.2.2 Repeating Linear Gradients</h3>
+            <p>
+              Creates striped patterns, often used for "Draft" or "Confidential"
+              overlays.
+            </p>
+            <div class="repeating-linear"></div>
+          </div>
+          <br />
+
+          <div id="radialGrad">
+            <h3>17.2.3 Radial Gradients</h3>
+            <p>
+              Radiates from a center point. Can create a "spotlight" effect.
+            </p>
+            <div class="radial-grad"></div>
+          </div>
+          <br />
+
+          <div id="repeatRadial">
+            <h3>17.2.4 Repeating Radial Gradients</h3>
+            <p>
+              Creates circular patterns (rarely used in clean financial UIs).
+            </p>
+            <div
+              style="
+                height: 100px;
+                background: repeating-radial-gradient(
+                  #e6f2ff,
+                  #e6f2ff 10px,
+                  #fff 10px,
+                  #fff 20px
+                );
+                border: 1px solid #ccc;
+              "
+            ></div>
+          </div>
+        </div>
+        <hr />
+
+        <!-- 17.3 CSS Sprites -->
+        <div id="sprites">
+          <h1>17.3 CSS Sprites (Performance Optimization)</h1>
+          <hr />
+          <p>
+            CSS Sprites combine multiple small icons into a single image file.
+            We then use `background-position` to show only the specific icon
+            needed. This reduces server requests and speeds up dashboard
+            loading.
+          </p>
+
+          <div class="sprite-container">
+            <div>
+              <div class="icon-sprite icon-home"></div>
+              <br /><small>Home</small>
+            </div>
+            <div>
+              <div class="icon-sprite icon-settings"></div>
+              <br /><small>Settings</small>
+            </div>
+            <div>
+              <div class="icon-sprite icon-user"></div>
+              <br /><small>User</small>
+            </div>
+          </div>
+          <p style="font-size: 0.9em; color: #666; margin-top: 10px">
+            *Note: These icons use the same source image but different
+            background positions.
+          </p>
+        </div>
+
+        <!-- Removed Previous/Next Buttons as requested -->
+      </div>
+    </div>
+
+    <!-- START: Bottom Navigation Bar (Fixed for Chapter 17) -->
+    <div class="bottom-navigation-bar">
+      <a href="Homepage.html">Home</a>
+      <a href="chapter_01.html">01</a>
+      <a href="chapter_02.html">02</a>
+      <a href="chapter_03.html">03</a>
+      <a href="chapter_04.html">04</a>
+      <a href="chapter_05.html">05</a>
+      <a href="chapter_06.html">06</a>
+      <a href="chapter_07.html">07</a>
+      <a href="chapter_08.html">08</a>
+      <a href="chapter_11.html">11</a>
+      <a href="chapter_12.html">12</a>
+      <a href="chapter_13.html">13</a>
+      <a href="chapter_14.html">14</a>
+      <a href="chapter_15.html">15</a>
+      <a href="chapter_16.html">16</a>
+      <a href="chapter_17.html" class="current-chapter">17</a>
+      <a href="chapter_18.html">18</a>
+      <a href="chapter_19.html">19</a>
+      <a href="chapter_20.html">20</a>
+      <a href="chapter_21.html">21</a>
+      <a href="chapter_22.html">22</a>
+    </div>
+    <footer>
+      <p>Copyright &copy; SecureBank Systems Training Division</p>
+      <address>
+        <p>1207 Udayon Tower, Financial District</p>
+        <p>
+          <a href="tel:01767697795">Support Line</a> |
+          <a href="mailto:inzamamkhan71@gmail.com">Security Operations</a>
+        </p>
+      </address>
+    </footer>
+  </body>
+</html>

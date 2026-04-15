@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureBank - Chapter 14: CSS Box Model Structure</title>
+    <!-- Use the financial stylesheet -->
+    <link rel="stylesheet" href="banking_style.css" />
+    <link rel="icon" href="icon/favicon.png" type="png" />
+    <style>
+      /* --- Internal CSS for Chapter 14 Demonstration --- */
+
+      /* 14.1 Box Sizing Types */
+      .box-container {
+        background-color: #f0f4f8;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+      }
+
+      .demo-box {
+        width: 300px;
+        padding: 20px;
+        border: 10px solid #004d99;
+        background-color: white;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      /* 14.1.1 Border Box */
+      .border-box-model {
+        box-sizing: border-box; /* Width includes padding & border */
+      }
+
+      /* 14.1.2 Content Box */
+      .content-box-model {
+        box-sizing: content-box; /* Width excludes padding & border (Default) */
+      }
+
+      /* 14.2 CSS Margins */
+      .margin-box {
+        background-color: #e6f2ff;
+        border: 1px solid #004d99;
+        padding: 10px;
+        width: 50%;
+      }
+
+      /* 14.2.1 Auto Margin */
+      .auto-margin {
+        margin: 0 auto; /* Centers the box horizontally */
+      }
+
+      /* 14.2.2 Collapsing Margins */
+      .collapse-1 {
+        margin-bottom: 30px;
+        background-color: #ffe6e6;
+        padding: 10px;
+      }
+      .collapse-2 {
+        margin-top: 20px; /* This margin collapses into the 30px above */
+        background-color: #e6ffe6;
+        padding: 10px;
+      }
+
+      /* 14.3 CSS Outline */
+      .outline-box {
+        border: 2px solid #004d99;
+        outline: 5px solid #00a04d; /* Outline sits OUTSIDE the border */
+        outline-offset: 5px;
+        padding: 10px;
+        margin: 20px;
+        background-color: white;
+      }
+
+      /* 14.4 CSS Borders */
+      .border-style-solid {
+        border: 3px solid #004d99;
+        padding: 10px;
+        margin-bottom: 5px;
+      }
+      .border-style-dashed {
+        border: 3px dashed #cc0000;
+        padding: 10px;
+        margin-bottom: 5px;
+      }
+      .border-style-dotted {
+        border: 3px dotted #00a04d;
+        padding: 10px;
+        margin-bottom: 5px;
+      }
+      .border-style-double {
+        border: 5px double #333;
+        padding: 10px;
+        margin-bottom: 5px;
+      }
+
+      /* 14.4.2 Border Radius */
+      .radius-box {
+        border: 2px solid #004d99;
+        border-radius: 15px; /* Rounded corners */
+        padding: 15px;
+        background-color: #f9f9f9;
+      }
+
+      /* 14.5 Padding */
+      .padding-visual {
+        background-color: #004d99;
+        color: white;
+        padding: 20px 40px; /* Top/Bottom 20px, Left/Right 40px */
+        display: inline-block;
+      }
+
+      /* 14.6 Width and Height */
+      .dimension-box {
+        width: 50%;
+        height: 100px;
+        background-color: #e0e0e0;
+        border: 1px solid #999;
+        overflow: auto; /* Scroll if content overflows */
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chapterName">
+      <h1><b> CHAPTER 14</b></h1>
+      <h2><b>CSS Box Model: Structuring Financial Data</b></h2>
+    </div>
+
+    <div class="contentAndTopic">
+      <div class="contents">
+        <h2>Table of Contents</h2>
+        <ol>
+          <li>
+            <a href="#boxSizing">Box Sizing Types</a>
+            <ol>
+              <li><a href="#borderBox">Border Box</a></li>
+              <li><a href="#contentBox">Content Box</a></li>
+            </ol>
+          </li>
+          <li>
+            <a href="#cssMargins">CSS Margins</a>
+            <ol>
+              <li><a href="#autoMargin">Auto Margin</a></li>
+              <li><a href="#collapsingMargins">Collapsing Margins</a></li>
+            </ol>
+          </li>
+          <li><a href="#cssOutline">CSS Outline</a></li>
+          <li>
+            <a href="#cssBorders">CSS Borders</a>
+            <ol>
+              <li><a href="#borderStyles">Border Styles</a></li>
+              <li><a href="#borderRadius">Border Radius</a></li>
+              <li><a href="#borderImages">Border Images</a></li>
+            </ol>
+          </li>
+          <li><a href="#cssPadding">CSS Padding</a></li>
+          <li><a href="#cssDimensions">CSS Width and Height</a></li>
+        </ol>
+      </div>
+
+      <div class="topic">
+        <!-- 14.1 Box Sizing Types -->
+        <div id="boxSizing">
+          <h1>14.1 Box Sizing Types (Layout Calculation)</h1>
+          <hr />
+          <p>
+            The `box-sizing` property defines how the width and height of an
+            element are calculated: should they include padding and borders, or
+            not? This is critical for pixel-perfect financial reports.
+          </p>
+
+          <div class="box-container">
+            <div id="borderBox">
+              <h3>14.1.1 Border Box (Recommended)</h3>
+              <div class="demo-box border-box-model">
+                Width: 300px (Fixed). Padding and Border are INCLUDED in this
+                width.
+              </div>
+              <p>
+                This ensures the element stays exactly 300px wide, fitting
+                perfectly into grid layouts.
+              </p>
+            </div>
+            <br />
+            <div id="contentBox">
+              <h3>14.1.2 Content Box (Default)</h3>
+              <div class="demo-box content-box-model">
+                Width: 300px + 40px Padding + 20px Border = 360px Total.
+              </div>
+              <p>
+                The element grows larger than 300px because padding/border are
+                added *outside* the width.
+              </p>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <!-- 14.2 CSS Margins -->
+        <div id="cssMargins">
+          <h1>14.2 CSS Margins (External Spacing)</h1>
+          <hr />
+          <p>
+            Margins create space *outside* the border, separating this component
+            from others.
+          </p>
+
+          <div id="autoMargin">
+            <h3>14.2.1 Auto Margin (Centering)</h3>
+            <div class="margin-box auto-margin">
+              <p>This report card is centered using `margin: 0 auto;`.</p>
+            </div>
+          </div>
+          <br />
+
+          <div id="collapsingMargins">
+            <h3>14.2.2 Collapsing Margins</h3>
+            <div class="collapse-1">Paragraph 1 (Margin Bottom: 30px)</div>
+            <div class="collapse-2">
+              Paragraph 2 (Margin Top: 20px)
+              <br />
+              Result: The distance between these two is **30px** (the larger of
+              the two), not 50px.
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <!-- 14.3 CSS Outline -->
+        <div id="cssOutline">
+          <h1>14.3 CSS Outline (Focus Indicators)</h1>
+          <hr />
+          <p>
+            An outline is a line drawn *outside* the elements border. Unlike
+            borders, outlines do not take up space. They are often used to
+            highlight active input fields for accessibility.
+          </p>
+          <div class="outline-box">
+            Active Transaction Input Field (Highlighted with Green Outline)
+          </div>
+        </div>
+        <hr />
+
+        <!-- 14.4 CSS Borders -->
+        <div id="cssBorders">
+          <h1>14.4 CSS Borders (Component Boundaries)</h1>
+          <hr />
+
+          <div id="borderStyles">
+            <h3>14.4.1 Border Styles</h3>
+            <div class="border-style-solid">Solid: Standard Data Card</div>
+            <div class="border-style-dashed">Dashed: Pending Transaction</div>
+            <div class="border-style-dotted">Dotted: Optional Field</div>
+            <div class="border-style-double">Double: Total Summary Line</div>
+          </div>
+          <br />
+
+          <div id="borderRadius">
+            <h3>14.4.2 CSS Border Radius (Modern UI)</h3>
+            <div class="radius-box">
+              <p>
+                Rounded corners (`border-radius: 15px`) create a softer, modern
+                look for client-facing dashboards.
+              </p>
+            </div>
+          </div>
+          <br />
+
+          <div id="borderImages">
+            <h3>14.4.3 CSS Border Images</h3>
+            <p>
+              <small
+                >(Advanced feature, rarely used in strict banking UIs, but
+                useful for marketing banners).</small
+              >
+              <br />
+              <code>border-image: url(border.png) 30 round;</code>
+            </p>
+          </div>
+        </div>
+        <hr />
+
+        <!-- 14.5 CSS Padding -->
+        <div id="cssPadding">
+          <h1>14.5 CSS Padding (Internal Spacing)</h1>
+          <hr />
+          <p>
+            Padding creates space *inside* the border, between the border and
+            the content. It ensures text doesn't touch the edges of the card.
+          </p>
+          <div class="padding-visual">
+            Invest Now (Button with 20px vertical & 40px horizontal padding)
+          </div>
+        </div>
+        <hr />
+
+        <!-- 14.6 CSS Width and Height -->
+        <div id="cssDimensions">
+          <h1>14.6 CSS Width and Height</h1>
+          <hr />
+          <p>
+            Explicitly setting width and height controls the size of the content
+            area (inside padding/border).
+          </p>
+          <div class="dimension-box">
+            <strong>Fixed Height Container:</strong><br />
+            This box has a width of 50% and a fixed height of 100px. If content
+            exceeds this height, the `overflow: auto` property will create a
+            scrollbar (useful for long transaction lists).
+            <br /><br />
+            (Extra content to demonstrate scrolling...)<br />
+            Transaction #1<br />Transaction #2<br />Transaction #3
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- START: Bottom Navigation Bar (Fixed for Chapter 14) -->
+    <div class="bottom-navigation-bar">
+      <a href="Homepage.html">Home</a>
+      <a href="chapter_01.html">01</a>
+      <a href="chapter_02.html">02</a>
+      <a href="chapter_03.html">03</a>
+      <a href="chapter_04.html">04</a>
+      <a href="chapter_05.html">05</a>
+      <a href="chapter_06.html">06</a>
+      <a href="chapter_07.html">07</a>
+      <a href="chapter_08.html">08</a>
+      <a href="chapter_11.html">11</a>
+      <a href="chapter_12.html">12</a>
+      <a href="chapter_13.html">13</a>
+      <a href="chapter_14.html" class="current-chapter">14</a>
+      <a href="chapter_15.html">15</a>
+      <a href="chapter_16.html">16</a>
+      <a href="chapter_17.html">17</a>
+      <a href="chapter_18.html">18</a>
+      <a href="chapter_19.html">19</a>
+      <a href="chapter_20.html">20</a>
+      <a href="chapter_21.html">21</a>
+      <a href="chapter_22.html">22</a>
+    </div>
+    <footer>
+      <p>Copyright &copy; SecureBank Systems Training Division</p>
+      <address>
+        <p>1207 Udayon Tower, Financial District</p>
+        <p>
+          <a href="tel:01767697795">Support Line</a> |
+          <a href="mailto:inzamamkhan71@gmail.com">Security Operations</a>
+        </p>
+      </address>
+    </footer>
+  </body>
+</html>

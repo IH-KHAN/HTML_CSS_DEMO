@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 1.4 Character Encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureBank - Chapter 01: Getting to Know HTML</title>
+    <!-- Use the financial stylesheet -->
+    <link rel="stylesheet" href="banking_style.css" />
+    <!-- 1.6 Favorite Icon -->
+    <link rel="icon" href="icon/favicon.png" type="png" />
+    <style>
+      /* Internal styles for demonstration */
+      .code-block {
+        background-color: #f4f4f4;
+        border-left: 4px solid #004d99;
+        padding: 10px;
+        font-family: monospace;
+        margin: 10px 0;
+        overflow-x: auto;
+      }
+      .element-demo {
+        border: 1px dashed #999;
+        padding: 10px;
+        margin: 10px 0;
+      }
+      .attribute-highlight {
+        color: #cc0000;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chapterName">
+      <h1><b> CHAPTER 01</b></h1>
+      <h2><b>Getting to Know HTML: The Foundation of Fintech</b></h2>
+    </div>
+
+    <div class="contentAndTopic">
+      <nav class="contents">
+        <h2>Table of Contents</h2>
+        <ol>
+          <li><a href="#htmlElements">1.1 Two Types of HTML Elements</a></li>
+          <li><a href="#docStructure">1.2 HTML Document Structure</a></li>
+          <li><a href="#firstWebpage">1.3 Your First Webpage</a></li>
+          <li><a href="#charEncoding">1.4 Character Encoding</a></li>
+          <li><a href="#attributes">1.5 Element Attributes</a></li>
+          <li><a href="#favicon">1.6 Favorite Icon</a></li>
+          <li><a href="#comments">1.7 Comments</a></li>
+        </ol>
+      </nav>
+
+      <div class="topic">
+        <!-- 1.1 Two Types of HTML Elements -->
+        <div id="htmlElements">
+          <h1>1.1 Two Types of HTML Elements</h1>
+          <hr />
+          <p>
+            In banking applications, we use two main types of elements to
+            structure data:
+          </p>
+
+          <h3>1. Container Elements (Normal Elements)</h3>
+          <p>
+            These have a start tag and an end tag. They contain content like
+            account balances or security notices.
+          </p>
+          <div class="element-demo">
+            <code>&lt;h1&gt;Welcome to SecureBank&lt;/h1&gt;</code><br />
+            <code>&lt;p&gt;Your session is secure.&lt;/p&gt;</code>
+          </div>
+
+          <h3>2. Void Elements (Empty Elements)</h3>
+          <p>
+            These have only a start tag and no content. Used for visual breaks
+            or metadata.
+          </p>
+          <div class="element-demo">
+            <code>&lt;hr&gt;</code> (Thematic Break - Separating sections)<br />
+            <code>&lt;br&gt;</code> (Line Break - Formatting addresses)<br />
+            <code>&lt;img src="logo.png"&gt;</code> (Images)
+          </div>
+        </div>
+        <hr />
+
+        <!-- 1.2 HTML Document Structure -->
+        <div id="docStructure">
+          <h1>1.2 HTML Document Structure</h1>
+          <hr />
+          <p>
+            Every compliant financial webpage follows a strict tree structure
+            (DOM). This ensures security tools and screen readers can parse the
+            data correctly.
+          </p>
+
+          <div class="code-block">
+            &lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;!-- Metadata:
+            Title, Charset, Security Policies --&gt; &lt;/head&gt; &lt;body&gt;
+            &lt;!-- Visible Content: Dashboard, Accounts, Forms --&gt;
+            &lt;/body&gt; &lt;/html&gt;
+          </div>
+        </div>
+        <hr />
+
+        <!-- 1.3 Your First Webpage -->
+        <div id="firstWebpage">
+          <h1>1.3 Your First Webpage (Secure Login)</h1>
+          <hr />
+          <p>Let's build the skeleton of a secure login page.</p>
+          <div class="element-demo">
+            <h1>SecureBank Login</h1>
+            <p>Please enter your credentials to access your portfolio.</p>
+            <hr />
+            <p>Note: We will never ask for your PIN via email.</p>
+          </div>
+        </div>
+        <hr />
+
+        <!-- 1.4 Character Encoding -->
+        <div id="charEncoding">
+          <h1>1.4 Character Encoding (Global Banking)</h1>
+          <hr />
+          <p>
+            Banking is global. We must use <strong>UTF-8</strong> to ensure
+            currencies (¥, €, £) and languages (Bengali, Japanese, Arabic)
+            display correctly without data corruption.
+          </p>
+          <div class="code-block">&lt;meta charset="UTF-8" /&gt;</div>
+
+          <h3>Examples of Multilingual Support:</h3>
+          <ul>
+            <li><strong>English:</strong> Welcome to My Webpage!</li>
+            <li>
+              <strong>Bengali:</strong> আমার ওয়েবপেজে স্বাগতম! (Welcome to my
+              webpage!)
+            </li>
+            <li>
+              <strong>Japanese:</strong> 私のウェブページへようこそ！ (Welcome
+              to my webpage!)
+            </li>
+            <li>
+              <strong>Arabic:</strong> مرحبًا بكم في صفحتي الإلكترونية! (Welcome
+              to my electronic page!)
+            </li>
+          </ul>
+        </div>
+        <hr />
+
+        <!-- 1.5 Element Attributes -->
+        <div id="attributes">
+          <h1>1.5 Element Attributes (Configuration)</h1>
+          <hr />
+          <p>
+            Attributes provide extra information about elements. In banking,
+            they are crucial for linking stylesheets, setting input types, and
+            accessibility.
+          </p>
+          <div class="code-block">
+            &lt;input <span class="attribute-highlight">type="password"</span>
+            <span class="attribute-highlight">placeholder="Enter Pin"</span>
+            /&gt;
+          </div>
+          <ul>
+            <li><strong>Name:</strong> The attribute name (e.g., `type`).</li>
+            <li><strong>Value:</strong> The setting (e.g., `password`).</li>
+          </ul>
+        </div>
+        <hr />
+
+        <!-- 1.6 Favorite Icon -->
+        <div id="favicon">
+          <h1>1.6 Favorite Icon (Favicon)</h1>
+          <hr />
+          <p>
+            The Favicon is the small logo that appears in the browser tab. It is
+            essential for brand recognition and phishing protection (users look
+            for the bank logo).
+          </p>
+          <div class="code-block">
+            &lt;link rel="icon" href="icon/favicon.png" /&gt;
+          </div>
+          <p>
+            <img
+              src="icon/favicon.png"
+              width="32"
+              height="32"
+              style="vertical-align: middle"
+            />
+            (This icon appears in your tab)
+          </p>
+        </div>
+        <hr />
+
+        <!-- 1.7 Comments -->
+        <div id="comments">
+          <h1>1.7 Comments (Internal Documentation)</h1>
+          <hr />
+          <p>
+            Comments are not displayed in the browser. Developers use them to
+            leave notes about code logic, security reminders, or TODOs for the
+            audit team.
+          </p>
+          <div class="code-block">
+            &lt;!-- SECURITY AUDIT: Ensure CSRF token is included in the form
+            below --&gt;
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- START: Bottom Navigation Bar  -->
+    <div class="bottom-navigation-bar">
+      <a href="Homepage.html">Home</a>
+      <a href="chapter_01.html" class="current-chapter">01</a>
+      <a href="chapter_02.html">02</a>
+      <a href="chapter_03.html">03</a>
+      <a href="chapter_04.html">04</a>
+      <a href="chapter_05.html">05</a>
+      <a href="chapter_06.html">06</a>
+      <a href="chapter_07.html">07</a>
+      <a href="chapter_08.html">08</a>
+      <a href="chapter_11.html">11</a>
+      <a href="chapter_12.html">12</a>
+      <a href="chapter_13.html">13</a>
+      <a href="chapter_14.html">14</a>
+      <a href="chapter_15.html">15</a>
+      <a href="chapter_16.html">16</a>
+      <a href="chapter_17.html">17</a>
+      <a href="chapter_18.html">18</a>
+      <a href="chapter_19.html">19</a>
+      <a href="chapter_20.html">20</a>
+      <a href="chapter_21.html">21</a>
+      <a href="chapter_22.html">22</a>
+    </div>
+    <footer>
+      <p>Copyright &copy; SecureBank Systems Training Division</p>
+      <address>
+        <p>1207 Udayon Tower, Financial District</p>
+        <p>
+          <a href="tel:01767697795">Support Line</a> |
+          <a href="mailto:inzamamkhan71@gmail.com">Security Operations</a>
+        </p>
+      </address>
+    </footer>
+  </body>
+</html>
